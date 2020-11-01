@@ -33,12 +33,39 @@ class Register extends React.Component {
 		this.setState({city: event.target.value})
 	}
 
-	
+	onSubmitRegister = () => {
+		fetch('http://localhost:3000/register', {
+			method: 'post',
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify({
+				fullname: this.state.fullname,
+				email: this.state.email,
+				password: this.state.password,
+				dob: this.state.dob,
+				city: this.state.city
+			})
+		})
+		.then(response => response.json())
+		.then(user => {
+			if (user){
+				this.props.UserInfo(user);
+				// change this to route signin later
+				this.props.onRouteChange('main');
+			}
+		})
+	}
+
+	onKeyPressedRegister = (event) => {
+		if(event.key === 'Enter'){
+			this.onSubmitRegister();
+		}
+	} 
 
 	render(){
 		const {onRouteChange} = this.props;
 		return(
-			<div className='flex justify-around flex-row mv6'>
+			<div className='flex justify-around flex-row mv6'
+				onKeyDown={this.onKeyPressRegister}>
 				<div className='dib br3 ma3 w-40'>
 					<h1>Did you know?</h1>
 					<p><strong>Coronavirus disease (COVID-19)</strong> is an infectious 
@@ -59,32 +86,32 @@ class Register extends React.Component {
 						<h1>Register Form</h1>
 						<div>
 					        <label className="fw6 lh-copy f5 ma3" htmlFor="full-name">Fullname:</label>
-							<input className="ma3 w-70" id="fn" type="text" name="fullname" size="50" placeholder="eg: Anderson Parker" 
+							<input className="ma3 w-70 input-reset" id="fn" type="text" name="fullname" size="50" placeholder="eg: Anderson Parker" 
 								onfocus="this.placeholder = ''"
 								onChange={this.onNameChange}/>
 						</div>
 						<div>
 							<label className="fw6 lh-copy f5 ma3" htmlFor="email-address">Username: </label>
-							<input className="ma3 w-70" id="email" type="email" name="email" size="50" required
+							<input className="ma3 w-70 input-reset" id="email" type="email" name="email" size="50" required
 								placeholder="eg: example@email.com" 
 								onfocus="this.placeholder = ''"
 								onChange={this.onEmailChange}/>
 						</div>
 						<div className='flex justify-around flex-row'>
 							<label className="fw6 lh-copy f5 ma3" htmlFor="password">Password: </label>
-							<input className="ma3 w-70" id="password" type="email" name="email" size="50" required
-								placeholder="eg: example@email.com" 
+							<input className="ma3 w-70 input-reset" id="password" type="password" name="email" size="50" required
+								placeholder="eg: bubbleteaislife" 
 								onfocus="this.placeholder = ''"
 								onChange={this.onPasswordChange}/>
 						</div>
 						<div>
 							<label className="fw6 lh-copy f5 ma3" htmlFor="dob">Date of Birth: </label>
-							<input className="ma3 w-60" id="dob" type="date" name="dob" size="50" required 
+							<input className="ma3 w-60 input-reset" id="dob" type="date" name="dob" size="50" required 
 								onChange={this.onDoBChange}/>
 						</div>
 						<div>
 							<label className="fw6 lh-copy f5 ma3" htmlFor="city">City: </label>
-							<input className="ma3 w-70" id="dob" type="text" name="city" size="50" list="cities" required 
+							<input className="ma3 w-70 input-reset" id="dob" type="text" name="city" size="50" list="cities" required 
 								onChange={this.onCityChange}/>
 							<datalist id="cities">
 								<option>Vancouver</option>
@@ -102,6 +129,7 @@ class Register extends React.Component {
 						</div>
 						<div className="mb3">
 				      		<input
+				      			onClick={this.onSubmitRegister}
 						      	className="b ph3 pv2 input-reset ba b--black bg-transparent dim pointer f6 dib" 
 						      	type="submit" 
 						      	value="Register"/>

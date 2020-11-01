@@ -13,9 +13,10 @@ class App extends Component {
       route: 'main',
       isSignIn: false,
       user: {
-        id: '',
         name: '',
         email: '',
+        dob: '',
+        city: '',
         joined: ''
       }
     };
@@ -23,9 +24,10 @@ class App extends Component {
 
   UserInfo = (data) => {
     this.setState({ user: {
-      id: data.id,
       name: data.name,
       email: data.email,
+      dob: data.dob,
+      city: data.city,
       joined: data.joined
     }})
   }
