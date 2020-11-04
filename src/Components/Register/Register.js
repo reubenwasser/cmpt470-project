@@ -34,7 +34,8 @@ class Register extends React.Component {
 	}
 
 	onSubmitRegister = () => {
-		fetch('http://localhost:3000/register', {
+    const url = process.env.SERVER_URL ? `${process.env.SERVER_URL}/register` : 'http://localhost:8080/register';
+		fetch(url, {
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
@@ -52,7 +53,10 @@ class Register extends React.Component {
 				// change this to route signin later
 				this.props.onRouteChange('main');
 			}
-		})
+    })
+    .catch(error => {
+      console.log(error.message);
+    })
 	}
 
 	onKeyPressedRegister = (event) => {

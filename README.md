@@ -2,6 +2,16 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Deploying code to GCP
+
+The front end code is hosted on Google App Engine.
+To deploy:
+
+1. `npm run build`
+2. `gcloud app deploy`
+
+After it has been successfully deployed, can run `gcloud app browse` to view the application. The application is deployed to https://cmpt470-group-project-294417.wl.r.appspot.com.
+
 ## Available Scripts
 
 In the project directory, you can run:
