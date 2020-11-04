@@ -1,5 +1,4 @@
 import React from 'react';
-import './Register.css';
 
 class Register extends React.Component {
 	constructor(props) {
@@ -14,7 +13,7 @@ class Register extends React.Component {
 	}
 
 	onNameChange = (event) => {
-		this.setState({fullname: event.target.value})
+		this.setState({name: event.target.value})
 	}
 
 	onEmailChange = (event) => {
@@ -39,7 +38,7 @@ class Register extends React.Component {
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
-				fullname: this.state.fullname,
+				name: this.state.name,
 				email: this.state.email,
 				password: this.state.password,
 				dob: this.state.dob,
@@ -48,16 +47,11 @@ class Register extends React.Component {
 		})
 		.then(response => response.json())
 		.then(user => {
-			if (user){
-				this.props.UserInfo(user);
-				// change this to route signin later
-				this.props.onRouteChange('main');
-			}
-    })
-    .catch(error => {
-      console.log(error.message);
-    })
+			this.props.UserInfo(user);
+			this.props.onRouteChange('main');
+		})
 	}
+	
 
 	onKeyPressedRegister = (event) => {
 		if(event.key === 'Enter'){
@@ -86,7 +80,7 @@ class Register extends React.Component {
 					</details> 
 				</div>
 				<div className='br3 ba'> 
-					<form>
+					<div>
 						<h1>Register Form</h1>
 						<div>
 					        <label className="fw6 lh-copy f5 ma3" htmlFor="full-name">Fullname:</label>
@@ -146,7 +140,7 @@ class Register extends React.Component {
 					      		value="Return to Main Page"/>
 					    </div>
 
-					</form>
+					</div>
 				</div>
 					
 			</div>
@@ -154,4 +148,4 @@ class Register extends React.Component {
 	}
 }
 
-export default Register;
+export default Register; 
