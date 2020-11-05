@@ -42,12 +42,19 @@ class App extends Component {
           <Route exact
             path='/Register'
             render={(props) => (
-              <Register {...props} UserInfo={this.UserInfo}
+              <Register {...props} 
+                UserInfo={this.UserInfo}
                />
             )}
           />
           <Route exact path="/SignIn" component={SignIn} />
-          <Route exact path="/UserPage" component={UserPage} />
+          <Route exact 
+            path="/UserPage" 
+            render={(props) => (
+              <UserPage {...props}
+              />
+            )}
+          />
         </Switch>
       </BrowserRouter>
     )
