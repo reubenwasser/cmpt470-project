@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import UnauthMain from './Components/UnauthMain/UnauthMain'
-import Register from './Components/Register/Register'
-import UserPage from './Components/UserPage/UserPage'
-import SignIn from './Components/SignIn/SignIn'
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import UnauthMain from './Components/UnauthMain/UnauthMain';
+import Register from './Components/Register/Register';
+import UserPage from './Components/UserPage/UserPage';
+import SignIn from './Components/SignIn/SignIn';
+import Map from './Components/Map/Map';
 
-document.title = "Covid-19 Pandemic";
+document.title = 'Covid-19 Pandemic';
 
 class App extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
       route: 'main',
@@ -18,44 +19,44 @@ class App extends Component {
         email: '',
         dob: '',
         city: '',
-        joined: ''
-      }
+        joined: '',
+      },
     };
   }
 
   UserInfo = (data) => {
-    this.setState({ user: {
-      name: data.name,
-      email: data.email,
-      dob: data.dob,
-      city: data.city,
-      joined: data.joined
-    }})
-  }
+    this.setState({
+      user: {
+        name: data.name,
+        email: data.email,
+        dob: data.dob,
+        city: data.city,
+        joined: data.joined,
+      },
+    });
+  };
 
-  
-  render(){
-     return (
+  render() {
+    return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={UnauthMain} />
-          <Route exact path='/Register' render={(props) => (<Register {...props} UserInfo={this.UserInfo}/>)}/>
-          <Route exact path="/SignIn" component={SignIn} />
-          <Route exact 
-            path="/UserPage" 
-            render={(props) => (
-              <UserPage {...props}
-              />
-            )}
+          <Route exact path='/' component={UnauthMain} />
+          <Route
+            exact
+            path='/Register'
+            render={(props) => <Register {...props} UserInfo={this.UserInfo} />}
           />
+          <Route exact path='/SignIn' component={SignIn} />
+          <Route
+            exact
+            path='/UserPage'
+            render={(props) => <UserPage {...props} />}
+          />
+          <Route exact path='/Map' render={(props) => <Map {...props} />} />
         </Switch>
       </BrowserRouter>
-    )
-      
-   
+    );
   }
 }
-
-
 
 export default App;

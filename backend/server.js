@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const path = require('path');
 const { Pool } = require('pg');
 
 const pool = new Pool({
@@ -58,7 +57,6 @@ app.post('/register', (req, res) => {
     if (error) {
       console.log(error.stack);
     } else {
-      console.log(results);
       res.json(results.rows[0]);
     }
   });
