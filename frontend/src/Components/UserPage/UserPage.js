@@ -32,10 +32,8 @@ class UserPage extends React.Component {
 		}, function () {
 			this.setState({percent: (parseInt(this.state.total)/5)*100},function () {
 				window.alert("the percentage of you having COVID is :  " + this.state.percent);
-			})
-			
-		})
-		
+			})	
+		})	
 	}
 
 
