@@ -4,13 +4,23 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Deploying code to GCP
 
-The front end code is hosted on Google App Engine.
+The application is hosted on Google App Engine.
 To deploy:
 
-1. `npm run build`
-2. `gcloud app deploy`
+1. `npm run build` in the frontend directory
+2. move the `build` folder from the frontend directory to the `public` folder in the backend directory
+3. `gcloud app deploy`in the backend directory
 
 After it has been successfully deployed, can run `gcloud app browse` to view the application. The application is deployed to https://cmpt470-group-project-294417.wl.r.appspot.com.
+
+## Running the application on local
+
+Will need to start up the frontend to serve the react app and backend to serve the node.js server separately.
+
+The node.js server is running on port 8080.
+
+The react app is running on port 3000
+NOTE: There is a proxy on the react app so any API request using relative URLs will automatically be routed to http://localhost:8080.
 
 ## Available Scripts
 
