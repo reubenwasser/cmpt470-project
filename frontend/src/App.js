@@ -39,7 +39,10 @@ class App extends Component {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={UnauthMain} />
-          <Route exact path='/Register' render={(props) => (<Register {...props} UserInfo={this.UserInfo}/>)}/>
+          <Route exact path='/Register' 
+            render= {(props) => 
+              (<Register {...props} UserInfo={this.UserInfo}/>)
+            }/>
           <Route exact path="/SignIn" component={SignIn} />
           <Route exact 
             path="/UserPage" 
@@ -55,7 +58,4 @@ class App extends Component {
    
   }
 }
-
-
-
 export default App;

@@ -1,5 +1,5 @@
 import React from 'react'; 
-import "../css/UserPage.css"
+import "./UserPage.css"
 
 
 
