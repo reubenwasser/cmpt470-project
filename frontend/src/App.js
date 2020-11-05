@@ -1,68 +1,23 @@
-import React, {Component} from 'react';
-import './App.css';
-import NavBar from './Components/NavBar/NavBar';
-import Register from './Components/Register/Register';
-
+import React, { Component } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import UnauthMain from './Components/UnauthMain/UnauthMain'
+import Register from './Components/Register/Register'
 
 document.title = "Covid-19 Pandemic";
 
 class App extends Component {
-  constructor(){
-    super();
-    this.state = {
-      route: 'main',
-      isSignIn: false,
-      user: {
-        name: '',
-        email: '',
-        dob: '',
-        city: '',
-        joined: ''
-      }
-    };
-  }
-
-  UserInfo = (data) => {
-    this.setState({ user: {
-      name: data.name,
-      email: data.email,
-      dob: data.dob,
-      city: data.city,
-      joined: data.joined
-    }})
-  }
-
-  onRouteChange = (route) => {
-    if (route === 'home'){
-      this.setState({isSignIn: true}); 
-    }
-    else if (route === 'register'){
-      this.setState({isSignIn: false});
-    }
-    else{
-      this.setState({isSignIn: false});      
-    }
-    this.setState({route: route})
-  }
-
+  
   render(){
-    const {route, isSignIn} = this.state ;
-    return (
-      <div className="App">
-        <NavBar isSignIn={isSignIn} onRouteChange={this.onRouteChange}/>
-        {route === 'main' ?
-          <h1>This is main page</h1>
-          
-          :
-          (route === 'register' ?
-            <Register UserInfo={this.UserInfo} onRouteChange={this.onRouteChange}/> 
-            :
-            <h1>Sign in Page</h1>
-          )
-        }      
-
-      </div>
-    );
+     return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={UnauthMain} />
+          <Route exact path="/Register" component={Register} />
+        </Switch>
+      </BrowserRouter>
+    )
+      
+   
   }
 }
 
