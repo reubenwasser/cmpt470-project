@@ -1,0 +1,14 @@
+env: standard
+runtime: nodejs12
+
+env_variables:
+  SERVER_URL: 'http://35.236.22.190:8080'
+  PORT: 8080
+  DB_USER: 'postgres'
+  DB_PASSWORD: 'root'
+  DB_NAME: 'postgres'
+  DB_ADDRESS: '34.94.244.15'
+  CLOUD_SQL_INSTANCE_NAME: 'cmpt470-group-project-294417:us-west2:cmpt470'
+
+beta_settings:
+  cloud_sql_instance: 'cmpt470-group-project-294417:us-west2:cmpt470'
