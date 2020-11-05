@@ -13,6 +13,15 @@ To deploy:
 
 After it has been successfully deployed, can run `gcloud app browse` to view the application. The application is deployed to https://cmpt470-group-project-294417.wl.r.appspot.com.
 
+## Running the application on local
+
+Will need to start up the frontend to serve the react app and backend to serve the node.js server separately.
+
+The node.js server is running on port 8080.
+
+The react app is running on port 3000
+NOTE: There is a proxy on the react app so any API request using relative URLs will automatically be routed to http://localhost:8080.
+
 ## Available Scripts
 
 In the project directory, you can run:
