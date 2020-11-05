@@ -50,7 +50,7 @@ class Register extends React.Component {
     })
       .then((response) => response.json())
       .then((user) => {
-        this.props.history.push('/')
+        this.props.history.push('/UserPage')
       });
   };
 
