@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import UnauthMain from './Components/UnauthMain/UnauthMain'
 import Register from './Components/Register/Register'
 import UserPage from './Components/UserPage/UserPage'
-
+import SignIn from './Components/SignIn/SignIn'
 
 document.title = "Covid-19 Pandemic";
 
@@ -42,9 +42,11 @@ class App extends Component {
           <Route exact
             path='/Register'
             render={(props) => (
-              <Register {...props} UserInfo={this.UserInfo} />
+              <Register {...props} UserInfo={this.UserInfo}
+               />
             )}
           />
+          <Route exact path="/SignIn" component={SignIn} />
           <Route exact path="/UserPage" component={UserPage} />
         </Switch>
       </BrowserRouter>

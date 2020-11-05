@@ -8,7 +8,7 @@ class UnauthMain extends Component {
 			<div>
 				<ul>
 				  <li><a class="active" href="/">Home</a></li>
-				  <li><a href="Sign-in">Sign-in</a></li>
+				  <li><a href="SignIn">Sign-in</a></li>
 				  <li><a href="Register" on>Register</a></li>
 				</ul>
 				<h1>This is the Main Page Before loging in</h1>
