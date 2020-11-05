@@ -14,25 +14,26 @@ class Register extends React.Component {
     }
   }
 
+  
   onNameChange = (event) => {
-    this.setState({name: event.target.value})
-  }
+    this.setState({ name: event.target.value });
+  };
 
   onEmailChange = (event) => {
-    this.setState({email: event.target.value})
-  } 
+    this.setState({ email: event.target.value });
+  };
 
   onPasswordChange = (event) => {
-    this.setState({password: event.target.value})
-  }
+    this.setState({ password: event.target.value });
+  };
 
   onDoBChange = (event) => {
-    this.setState({dob: event.target.value})
-  }
+    this.setState({ dob: event.target.value });
+  };
 
   onCityChange = (event) => {
-    this.setState({city: event.target.value})
-  }
+    this.setState({ city: event.target.value });
+  };
 
   onSubmitRegister = () => {
     fetch('/register', {
@@ -50,11 +51,15 @@ class Register extends React.Component {
     })
       .then((response) => response.json())
       .then((user) => {
+        this.props.UserInfo(user);
         this.props.history.push('/UserPage')
       });
   };
-
-  
+  onKeyPressedRegister = (event) => {
+    if (event.key === 'Enter') {
+      this.onSubmitRegister();
+    }
+  };
 
   
   render(){
