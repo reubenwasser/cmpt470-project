@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import "../css/UnauthMain.css"
+import "./UnauthMain.css"
 
 class UnauthMain extends Component {
 	

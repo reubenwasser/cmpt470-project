@@ -35,3 +35,16 @@ li a:hover:not(.active) {
 .active {
   background-color: #4CAF50;
 }
+
+.secret {
+  margin: 5px;
+  padding: 4px;
+  color: black;
+  border: solid 1px black;
+  background-color: lightgrey; 
+  text-decoration: none;
+}
+
+input {
+  margin: 5px;
+}  
