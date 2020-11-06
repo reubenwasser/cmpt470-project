@@ -20,7 +20,7 @@ class SignIn extends Component {
 	}
 
 	onSubmitSignin = () => {
-		fetch('http://localhost:3000/signin', {
+		fetch('/signin', {
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
@@ -76,7 +76,7 @@ class SignIn extends Component {
 			                onChange={this.onPasswordChange}/>
 			            <br/>
 			            {!isCorrect ?
-				      		<p className='red ma1'>Wrong username or password. </p>
+				      		<p className='red ma1'>Wrong username or password.</p>
 				      		:
 				      		<p className='ma1'></p>
 				      	}

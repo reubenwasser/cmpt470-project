@@ -10,7 +10,8 @@ class Register extends React.Component {
       email: '',
       password: '',
       dob: '',
-      city: ''
+      city: '',
+      validateEmail: true
     }
   }
 
@@ -36,7 +37,7 @@ class Register extends React.Component {
   };
 
   onSubmitRegister = () => {
-    fetch('http://localhost:3000/register', {
+    fetch('/register', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -51,8 +52,13 @@ class Register extends React.Component {
     })
       .then((response) => response.json())
       .then((user) => {
-        this.props.UserInfo(user);
-        this.props.history.push('/Signin')
+        if (user === 'Email is not available.'){
+          this.setState({validateEmail: false})
+        }
+        else{
+          this.props.UserInfo(user);
+          this.props.history.push('/Signin')
+        }
       });
   };
 
@@ -63,6 +69,7 @@ class Register extends React.Component {
   };
 
   render(){
+    const {validateEmail} = this.state;
     return(
       <div>
         <ul>
@@ -151,6 +158,11 @@ class Register extends React.Component {
                 <option>Montreal</option>   
             </datalist>
             <br/>
+            {!validateEmail ?
+              <p className='red ma1'>Email is not avaiable to use. Please use different email!</p>
+              :
+              <p className='ma1'></p>
+            }
             <input
               className='ma1'
               onClick={this.onSubmitRegister}

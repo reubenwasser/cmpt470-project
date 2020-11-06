@@ -40,7 +40,7 @@ app.post('/signin', (req, res) => {
     else {
       const isValidPw = bcrypt.compareSync(password, results.rows[0].password);
       if (isValidPw){
-        console.log(results);
+        // console.log(results.rows[0]);
         res.json(results.rows[0]);
       }
       else {
@@ -56,17 +56,22 @@ app.post('/register', (req, res) => {
   const joined = new Date();
   const query = {
     text:
-      'INSERT INTO users(name, email, password, dob, city, joined) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
+      'INSERT INTO users(name, email, password, dob, city, joined) VALUES ($1, $2, $3, $4, $5, $6) ON CONFLICT DO NOTHING RETURNING *',
     values: [name, email, hashPassword, dob, city, joined],
   };
   pool.query(query, (error, results) => {
     if (error) {
       console.log(error.stack);
-    } else {
-      console.log(results);
+    } 
+    else if (results.rows.length < 1){
+      res.status(200).json('Email is not available.');
+    }
+    else {
+      // console.log(results.rows.length);
       res.json(results.rows[0]);
     }
-  });
+  }
+  );
 });
 
 const PORT = process.env.PORT || 3000;
