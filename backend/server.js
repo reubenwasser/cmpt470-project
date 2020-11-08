@@ -38,13 +38,18 @@ app.post('/signin', (req, res) => {
       res.status(400).json('Unable to get user.');
     }
     else {
-      const isValidPw = bcrypt.compareSync(password, results.rows[0].password);
-      if (isValidPw){
-        // console.log(results.rows[0]);
-        res.json(results.rows[0]);
-      }
-      else {
+      if (results.rows.length < 1){
         res.status(200).json('Wrong credential');
+      }
+      else{
+        const isValidPw = bcrypt.compareSync(password, results.rows[0].password);
+        if (isValidPw){
+          // console.log(results.rows[0]);
+          res.json(results.rows[0]);
+        }
+        else {
+          res.status(200).json('Wrong credential');
+        }      
       }
     }
   });

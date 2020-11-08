@@ -34,6 +34,7 @@ class SignIn extends Component {
 				this.setState({isCorrect: false})
 			}
 			else{
+				this.props.CorrectSignIn(true);
 				this.props.UserInfo(data);
 		        this.props.history.push('/UserPage');
 			}
