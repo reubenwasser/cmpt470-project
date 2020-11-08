@@ -4,6 +4,7 @@ import UnauthMain from './Components/UnauthMain/UnauthMain'
 import Register from './Components/Register/Register'
 import UserPage from './Components/UserPage/UserPage'
 import SignIn from './Components/SignIn/SignIn'
+import Stats from './Components/Stats/Stats'
 
 document.title = "Covid-19 Pandemic";
 
@@ -48,6 +49,14 @@ class App extends Component {
             path="/UserPage" 
             render={(props) => (
               <UserPage {...props}
+              />
+            )}
+          />
+
+          <Route exact 
+            path="/Stats" 
+            render={(props) => (
+              <Stats {...props}
               />
             )}
           />
