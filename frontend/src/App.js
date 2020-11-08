@@ -43,7 +43,10 @@ class App extends Component {
             render= {(props) => 
               (<Register {...props} UserInfo={this.UserInfo}/>)
             }/>
-          <Route exact path="/SignIn" component={SignIn} />
+          <Route exact path="/SignIn" 
+            render= {(props) => 
+              (<SignIn {...props} UserInfo={this.UserInfo}/>)
+            }/>
           <Route exact 
             path="/UserPage" 
             render={(props) => (
