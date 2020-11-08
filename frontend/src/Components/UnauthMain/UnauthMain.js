@@ -16,10 +16,6 @@ class UnauthMain extends Component {
 			</div>
 			
 			
-			
-
-
-
 		)
 	}
 }

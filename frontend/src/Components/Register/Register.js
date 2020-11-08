@@ -10,7 +10,8 @@ class Register extends React.Component {
       email: '',
       password: '',
       dob: '',
-      city: ''
+      city: '',
+      validateEmail: true
     }
   }
 
@@ -51,18 +52,24 @@ class Register extends React.Component {
     })
       .then((response) => response.json())
       .then((user) => {
-        this.props.UserInfo(user);
-        this.props.history.push('/UserPage')
+        if (user === 'Email is not available.'){
+          this.setState({validateEmail: false})
+        }
+        else{
+          this.props.UserInfo(user);
+          this.props.history.push('/Signin')
+        }
       });
   };
+
   onKeyPressedRegister = (event) => {
     if (event.key === 'Enter') {
       this.onSubmitRegister();
     }
   };
 
-  
   render(){
+    const {validateEmail} = this.state;
     return(
       <div>
         <ul>
@@ -89,40 +96,54 @@ class Register extends React.Component {
           <div class="addUserForm">
             <h1 class="label_title">Register</h1>
             <label>Full Name : </label>
-            <input id="fn" 
-                type="text" 
-                name="fullname" 
-                placeholder="eg: Anderson Parker" 
-                onChange={this.onNameChange}/>
+            <input 
+              className='ma1'
+              id="fn" 
+              type="text" 
+              name="fullname" 
+              placeholder="eg: Anderson Parker" 
+              onChange={this.onNameChange}/>
             <br/>
             <label>UserName : </label>
-            <input id="email" 
-                type="email" 
-                name="email" 
-                size="50" required 
-                placeholder="eg: example@email.com" 
-                onChange={this.onEmailChange}/>
+            <input 
+              className='ma1'
+              id="email" 
+              type="email" 
+              name="email" 
+              size="50" required 
+              placeholder="eg: example@email.com" 
+              onChange={this.onEmailChange}/>
             <br/>
             <label>password: </label>
-            <input id="password" type="password" name="email" size="50" required
-                placeholder="eg: bubbleteaislife" 
-                onfocus="this.placeholder = ''"
-                onChange={this.onPasswordChange}/>
+            <input
+              className='ma1' 
+              id="password" 
+              type="password" 
+              name="email" 
+              size="50" 
+              required
+              placeholder="eg: bubbleteaislife" 
+              onfocus="this.placeholder = ''"
+              onChange={this.onPasswordChange}/>
             <br/>
             <label>Date of Birth: </label>
-            <input id="dob" 
-                type="date" 
-                name="dob" 
-                size="50" required 
-                onChange={this.onDoBChange}/>
+            <input
+              className='ma1' 
+              id="dob" 
+              type="date" 
+              name="dob" 
+              size="50" required 
+              onChange={this.onDoBChange}/>
             <br/>
             <label>City: </label>
-            <input id="city" 
-                type="text" 
-                name="city" 
-                size="50" 
-                list="cities" required 
-                onChange={this.onCityChange}/>
+            <input
+              className='ma1' 
+              id="city" 
+              type="text" 
+              name="city" 
+              size="50" 
+              list="cities" required 
+              onChange={this.onCityChange}/>
             <datalist id="cities">
                 <option>Vancouver</option>
                 <option>Victoria</option> 
@@ -137,16 +158,19 @@ class Register extends React.Component {
                 <option>Montreal</option>   
             </datalist>
             <br/>
+            {!validateEmail ?
+              <p className='red ma1'>Email is not avaiable to use. Please use different email!</p>
+              :
+              <p className='ma1'></p>
+            }
             <input
+              className='ma1'
               onClick={this.onSubmitRegister}
               type="submit" 
               value="Register"/>
-              
+            <a href="SignIn" className='ma1 secret dim pointer f6 dib br2' on>Return to Sign-in</a>   
           </div>
-        </div>
-        
-        
-          
+        </div>  
       </div>
     );
   }
