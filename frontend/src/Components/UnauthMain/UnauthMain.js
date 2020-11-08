@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import "./UnauthMain.css"
+import "../css/UnauthMain.css"
 
 class UnauthMain extends Component {
 	
@@ -10,7 +10,6 @@ class UnauthMain extends Component {
 				  <li><a class="active" href="/">Home</a></li>
 				  <li><a href="SignIn">Sign-in</a></li>
 				  <li><a href="Register" on>Register</a></li>
-				  <li><a href="Stats" on>Stats</a></li>
 				</ul>
 				<h1>This is the Main Page Before loging in</h1>
 			</div>
