@@ -1,0 +1,29 @@
+.active {
+  background-color: #4caf50;
+}
+
+.nav {
+  z-index: 10;
+}
+.navReg {
+  width: 100px;
+  float: right;
+}
+.navSign {
+  width: 100px;
+  float: right;
+}
+.navSign a {
+  color: #4563fe;
+}
+.navHome {
+  width: 100px;
+  float: left;
+}
+.navStat {
+  width: 100px;
+}
+
+.navMap {
+  width: 100px;
+}

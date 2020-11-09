@@ -76,6 +76,7 @@ class Register extends React.Component {
         <ul class="nav">
           <li class="navHome"><a href="/">Home</a></li>
           <li class="navStat"><a href="Stats">Stats</a></li>
+          <li class="navMap"><a href="Map">Map</a></li>
           <li class="navReg"><a class="active" href="Register" on>Register</a></li>
           <li class="navSign"><a href="SignIn">Sign-in</a></li>
         </ul>

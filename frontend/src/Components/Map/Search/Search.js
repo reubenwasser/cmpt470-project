@@ -13,7 +13,7 @@ import {
 } from '@reach/combobox';
 
 import '@reach/combobox/styles.css';
-import '../css/Search.css';
+import './Search.css';
 
 export default function Search({ panTo, handleMarkers }) {
   const {

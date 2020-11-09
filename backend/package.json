@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/rubadub13/cmpt470-project/issues"
   },
-  "homepage": "https://github.com/rubadub13/cmpt470-project#readme",
+  "homepage": ".",
   "dependencies": {
     "@google-cloud/secret-manager": "^3.2.1",
     "bcrypt-nodejs": "0.0.3",

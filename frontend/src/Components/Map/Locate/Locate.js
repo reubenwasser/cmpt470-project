@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../css/Locate.css';
+import './Locate.css';
 
 export default function Locate({ panTo }) {
   return (

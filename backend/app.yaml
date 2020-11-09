@@ -8,7 +8,6 @@ env_variables:
   DB_PASSWORD: 'root'
   DB_NAME: 'postgres'
   DB_ADDRESS: '34.94.244.15'
-  GOOGLE_MAPS_API_KEY: 'AIzaSyC5c_gIqeFjNMQ5L-5Hs6gQGjoITEEwlxA'
   # CLOUD_SQL_INSTANCE_NAME: 'cmpt470-group-project-294417:us-west2:cmpt470'
 
 beta_settings:

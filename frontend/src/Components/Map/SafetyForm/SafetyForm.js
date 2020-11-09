@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../css/SafetyForm.css';
+import './SafetyForm.css';
 
 // Going to add more to the form in the future
 const options = [

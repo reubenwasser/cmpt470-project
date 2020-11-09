@@ -1,8 +1,8 @@
 import React from 'react';
 
-import SafetyForm from './SafetyForm';
+import SafetyForm from '../SafetyForm/SafetyForm';
 
-import '../css/Establishment.css';
+import './Establishment.css';
 
 export default function Establishment({ selected }) {
   const [displayForm, setDisplayForm] = React.useState(false);

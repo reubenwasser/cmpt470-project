@@ -8,10 +8,11 @@ import {
 import _ from 'lodash';
 
 import mapStyles from './mapStyles';
+import './Map.css';
 
-import Search from './Search';
-import Establishment from './Establishment';
-import Locate from './Locate';
+import Search from './Search/Search';
+import Establishment from './Establishment/Establishment';
+import Locate from './Locate/Locate';
 
 // Additional libraries that we want to use along with the Google Maps API
 // These libraries must also be enabled within the google cloud project
@@ -86,12 +87,12 @@ export default function Map() {
 
   return (
     <div>
-        <ul>
-				  <li><a href="/">Home</a></li>
-				  <li><a href="SignIn">Sign-in</a></li>
-				  <li><a href="Register" on>Register</a></li>
-				  <li><a href="Stats" on>Stats</a></li>
-          <li><a className="active" href="Map">Map</a></li>
+				<ul class="nav">
+				  <li class="navHome"><a href="/">Home</a></li>
+				  <li class="navStat"><a href="Stats">Stats</a></li>
+          <li class="navMap"><a class="active" href="Map">Map</a></li>
+				  <li class="navReg"><a href="Register" on>Register</a></li>
+				  <li class="navSign"><a href="SignIn">Sign-in</a></li>
 				</ul>
       <Search panTo={panTo} handleMarkers={handleMarkers} />
       <Locate panTo={panTo} />
