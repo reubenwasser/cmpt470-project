@@ -4,6 +4,7 @@ import UnauthMain from './Components/UnauthMain/UnauthMain'
 import Register from './Components/Register/Register'
 import UserPage from './Components/UserPage/UserPage'
 import SignIn from './Components/SignIn/SignIn'
+import Map from './Components/Map/Map';
 import Stats from './Components/Stats/Stats'
 
 document.title = 'Covid-19 Pandemic';
@@ -61,7 +62,7 @@ class App extends Component {
               }/>
               <Route exact path="/Map"
                 render={(props) => 
-                  (<Map />)
+                  (<Map {...props}/>)
               }/>
               <Route exact 
                 path="/Stats" 

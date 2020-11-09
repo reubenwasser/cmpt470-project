@@ -92,7 +92,7 @@ class UserPage extends React.Component {
 		return(
 			<div>
 				<ul>
-				  <li><a class="active" href="/UserPage">UserPage</a></li>
+				  <li><a className="active" href="/UserPage">UserPage</a></li>
           <li><a href="/Map">Map</a></li>
 				  <li><a href="/">log-off</a></li>
 				</ul>

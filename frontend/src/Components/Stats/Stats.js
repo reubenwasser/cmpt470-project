@@ -38,7 +38,8 @@ class Stats extends React.Component {
 				  <li><a href="/">Home</a></li>
 				  <li><a href="SignIn">Sign-in</a></li>
 				  <li><a href="Register" on>Register</a></li>
-				  <li><a class="active" href="Stats" on>Stats</a></li>
+				  <li><a className="active" href="Stats" on>Stats</a></li>
+          <li><a href="Map">Map</a></li>
 				</ul>
 				<h1 className="Text">Current Stats - Canada</h1>
 				<h3 className="Text1">Update @</h3>

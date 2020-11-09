@@ -75,8 +75,9 @@ class Register extends React.Component {
         <ul>
           <li><a href="/">Home</a></li>
           <li><a href="SignIn">Sign-in</a></li>
-          <li><a class="active" href="Register">Register</a></li>
+          <li><a className="active" href="Register">Register</a></li>
           <li><a href="Stats">Stats</a></li>
+          <li><a href="Map">Map</a></li>
         </ul>
         <div className='text'>
           <h1>Did you know?</h1>

@@ -20,7 +20,7 @@ const libraries = ['places'];
 // Set the width and height of the map on the page
 const mapContainerStyle = {
   width: '100vw',
-  height: '100vh',
+  height: '95vh',
 };
 
 const defaultZoom = 8;
@@ -52,7 +52,7 @@ export default function Map() {
   }, []);
 
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY || process.env.GOOGLE_MAPS_API_KEY,
     libraries,
   });
 
@@ -86,6 +86,13 @@ export default function Map() {
 
   return (
     <div>
+        <ul>
+				  <li><a href="/">Home</a></li>
+				  <li><a href="SignIn">Sign-in</a></li>
+				  <li><a href="Register" on>Register</a></li>
+				  <li><a href="Stats" on>Stats</a></li>
+          <li><a className="active" href="Map">Map</a></li>
+				</ul>
       <Search panTo={panTo} handleMarkers={handleMarkers} />
       <Locate panTo={panTo} />
       <GoogleMap

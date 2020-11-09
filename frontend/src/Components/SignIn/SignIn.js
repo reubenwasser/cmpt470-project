@@ -54,9 +54,10 @@ class SignIn extends Component {
 			<div>
 				<ul>
 				  <li><a href="/">Home</a></li>
-				  <li><a class="active" href="SignIn">Sign-in</a></li>
+				  <li><a className="active" href="SignIn">Sign-in</a></li>
 				  <li><a href="Register" on>Register</a></li>
 				  <li><a href="Stats">Stats</a></li>
+          <li><a href="Map">Map</a></li>
 				</ul>
 
 				<div>
