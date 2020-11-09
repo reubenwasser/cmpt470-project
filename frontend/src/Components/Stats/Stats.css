@@ -1,12 +1,12 @@
 .nav {
   position: fixed;
-  top:0;
+  top: 0;
   width: 100%;
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #4B4C54 ;
+  background-color: #4b4c54;
 }
 li a {
   display: block;
@@ -21,76 +21,71 @@ li a:hover:not(.active) {
 }
 
 .active {
-  background-color: #4CAF50;
+  background-color: #4caf50;
 }
 .navReg {
   width: 100px;
-  float:right; 
+  float: right;
 }
 .navSign {
   width: 100px;
-  float:right;
-  
+  float: right;
 }
 .navSign a {
-  color:#4563FE ;
+  color: #4563fe;
 }
 .navHome {
-  width:100px;
-  float:left;
+  width: 100px;
+  float: left;
 }
 
 .navStat {
   width: 100px;
 }
 
-.Text{
-  display:inline-block;
-  margin-left: 10px;
-  
+.navMap {
+  width: 100px;
 }
 
-.Text1{
-  display:inline-block;
+.Text {
+  display: inline-block;
   margin-left: 10px;
 }
 
+.Text1 {
+  display: inline-block;
+  margin-left: 10px;
+}
 
-.ReportDate{
-  display:inline-block;
+.ReportDate {
+  display: inline-block;
   margin-left: 5px;
-
 }
-.statBody table{
-  display:inline-block;
+.statBody table {
+  display: inline-block;
   border-collapse: collapse;
   margin-left: 10px;
 }
 
-.statBody tr:nth-child(even) 
-{
+.statBody tr:nth-child(even) {
   background-color: #d4d0d0;
 }
 
-.statBody tr:hover{
-
+.statBody tr:hover {
   border: 1px solid black;
   background-color: #ec9090;
-  
-  
 }
 
-.statBody th{
-  background-color:green ;
+.statBody th {
+  background-color: green;
   border: 1px solid black;
   border-collapse: collapse;
-  padding:10px;
+  padding: 10px;
   color: white;
   text-align: left;
 }
 
-.statBody td{
-  
+.statBody td {
   border: 1px solid black;
   border-collapse: collapse;
   padding: 10px;
@@ -101,7 +96,7 @@ li a:hover:not(.active) {
 .statMap {
   position: fixed;
   margin-top: -30px;
-  margin-left:30px;
-  width:680px;
-  height:570px;
+  margin-left: 30px;
+  width: 680px;
+  height: 570px;
 }

@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const path = require('path');
 const bcrypt = require('bcrypt-nodejs');
 const { Pool } = require('pg');
 
@@ -27,29 +26,28 @@ app.get('*', function (req, res) {
 });
 
 app.post('/signin', (req, res) => {
-  const {email, password} = req.body;
+  const { email, password } = req.body;
   const query = {
-    text:
-      'SELECT * FROM users WHERE email = $1',
+    text: 'SELECT * FROM users WHERE email = $1',
     values: [email],
   };
   pool.query(query, (err, results) => {
-    if (err){
+    if (err) {
       res.status(400).json('Unable to get user.');
-    }
-    else {
-      if (results.rows.length < 1){
+    } else {
+      if (results.rows.length < 1) {
         res.status(200).json('Wrong credential');
-      }
-      else{
-        const isValidPw = bcrypt.compareSync(password, results.rows[0].password);
-        if (isValidPw){
+      } else {
+        const isValidPw = bcrypt.compareSync(
+          password,
+          results.rows[0].password
+        );
+        if (isValidPw) {
           // console.log(results.rows[0]);
           res.json(results.rows[0]);
-        }
-        else {
+        } else {
           res.status(200).json('Wrong credential');
-        }      
+        }
       }
     }
   });
@@ -67,16 +65,13 @@ app.post('/register', (req, res) => {
   pool.query(query, (error, results) => {
     if (error) {
       console.log(error.stack);
-    } 
-    else if (results.rows.length < 1){
+    } else if (results.rows.length < 1) {
       res.status(200).json('Email is not available.');
-    }
-    else {
+    } else {
       // console.log(results.rows.length);
       res.json(results.rows[0]);
     }
-  }
-  );
+  });
 });
 
 const PORT = process.env.PORT || 8080;

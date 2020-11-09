@@ -1,12 +1,12 @@
 .nav {
   position: fixed;
-  top:0;
+  top: 0;
   width: 100%;
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #4B4C54 ;
+  background-color: #4b4c54;
 }
 
 li {
@@ -26,25 +26,28 @@ li a:hover:not(.active) {
 }
 
 .active {
-  background-color: #4CAF50;
+  background-color: #4caf50;
 }
 .navReg {
   width: 100px;
-  float:right; 
+  float: right;
 }
 .navSign {
   width: 100px;
-  float:right;
-  
+  float: right;
 }
 .navSign a {
-  color:#4563FE ;
+  color: #4563fe;
 }
 .navHome {
-  width:100px;
-  float:left;
+  width: 100px;
+  float: left;
 }
 .navStat {
+  width: 100px;
+}
+
+.navMap {
   width: 100px;
 }
 
@@ -52,8 +55,8 @@ li a:hover:not(.active) {
   margin-top: 100px;
   margin-left: 300px;
 }
-.label_title{
-  font-size:50px;
+.label_title {
+  font-size: 50px;
 }
 .addUserForm label {
   margin-left: 30px;
@@ -71,10 +74,10 @@ li a:hover:not(.active) {
 }
 .signSubmit {
   margin-top: 20px;
-  margin-left:30px;
+  margin-left: 30px;
   padding: 12px 190px;
 }
 .signWrong {
   margin-left: 30px;
-  color:red;
+  color: red;
 }
