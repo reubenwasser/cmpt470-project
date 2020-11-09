@@ -1,19 +1,12 @@
-.text {
-  width: 460px;
-  margin-left: 10px;
-}
-.formPopup {
-  position: absolute;
-  margin-left:650px;
-  top: 50px;
-}
-
-ul {
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: #4b4c54;
 }
 
 li {
@@ -33,18 +26,68 @@ li a:hover:not(.active) {
 }
 
 .active {
-  background-color: #4CAF50;
+  background-color: #4caf50;
 }
 
+.navReg {
+  width: 100px;
+  float: right;
+}
+.navSign {
+  width: 100px;
+  float: right;
+}
+.navSign a {
+  color: #4563fe;
+}
+.navHome {
+  width: 100px;
+  float: left;
+}
+.navStat {
+  width: 100px;
+}
+
+.navMap {
+  width: 100px;
+}
+
+.regisUserForm {
+  margin-top: 70px;
+  margin-left: 300px;
+}
+.regisUserForm label {
+  font-size: 20px;
+}
+.regisInput {
+  width: 400px;
+  margin-left: 60px;
+  padding: 8px 20px;
+  border: 1px solid #ccc;
+}
+.regisInputDate {
+  width: 358px;
+  margin-left: 60px;
+  padding: 8px 20px;
+  border: 1px solid #ccc;
+}
 .secret {
   margin: 5px;
   padding: 4px;
   color: black;
   border: solid 1px black;
-  background-color: lightgrey; 
+  background-color: lightgrey;
   text-decoration: none;
 }
-
-input {
-  margin: 5px;
-}  
+.regisWrong {
+  margin-left: 30px;
+  color: red;
+}
+.regisSubmit {
+  margin-top: 20px;
+  margin-left: 30px;
+  padding: 5px 190px;
+}
+.regisUserForm p {
+  margin-left: 30px;
+}

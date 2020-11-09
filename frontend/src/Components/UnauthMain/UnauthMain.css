@@ -1,15 +1,13 @@
-ul {
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: #4b4c54;
 }
-
-li {
-  float: left;
-}
-
 li a {
   display: block;
   color: white;
@@ -23,6 +21,38 @@ li a:hover:not(.active) {
 }
 
 .active {
-  background-color: #4CAF50;
+  background-color: #4caf50;
+}
+.navReg {
+  width: 100px;
+  float: right;
+}
+.navSign {
+  width: 100px;
+  float: right;
 }
 
+.navSign a {
+  color: #4563fe;
+}
+.navHome {
+  width: 100px;
+  float: left;
+}
+.navStat {
+  width: 100px;
+}
+
+.navMap {
+  width: 100px;
+}
+
+.bodyMain {
+  margin-top: 65px;
+  margin-left: 15px;
+}
+
+.map {
+  display: inline-block;
+  margin-left: 30px;
+}

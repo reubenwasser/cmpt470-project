@@ -4,11 +4,13 @@ import UnauthMain from './Components/UnauthMain/UnauthMain'
 import Register from './Components/Register/Register'
 import UserPage from './Components/UserPage/UserPage'
 import SignIn from './Components/SignIn/SignIn'
+import Map from './Components/Map/Map';
+import Stats from './Components/Stats/Stats'
 
-document.title = "Covid-19 Pandemic";
+document.title = 'Covid-19 Pandemic';
 
 class App extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
       route: 'main',
@@ -18,20 +20,22 @@ class App extends Component {
         email: '',
         dob: '',
         city: '',
-        joined: ''
-      }
+        joined: '',
+      },
     };
   }
 
   UserInfo = (data) => {
-    this.setState({ user: {
-      name: data.name,
-      email: data.email,
-      dob: data.dob,
-      city: data.city,
-      joined: data.joined
-    }})
-  }
+    this.setState({
+      user: {
+        name: data.name,
+        email: data.email,
+        dob: data.dob,
+        city: data.city,
+        joined: data.joined,
+      },
+    });
+  };
 
   CorrectSignIn = (bool) => {
     this.setState({isSignIn: bool})
@@ -47,7 +51,9 @@ class App extends Component {
      return (
       <BrowserRouter useEffect>
         <Switch>
+
          {isSignIn === false?
+            <>
             <div>
               <Route exact path="/" component={UnauthMain} />
               <Route exact path='/Register' 
@@ -59,8 +65,21 @@ class App extends Component {
                 render= {(props) => 
                   (<SignIn {...props} UserInfo={this.UserInfo} CorrectSignIn={this.CorrectSignIn}/>)
               }/>
+              <Route exact path="/Map"
+                render={(props) => 
+                  (<Map {...props}/>)
+              }/>
+              <Route exact 
+                path="/Stats" 
+                render={(props) => (
+                  <Stats {...props}
+                  />
+                )}
+              />
             </div>
+            </>
             :
+            <>
             <Route exact 
               path="/UserPage" 
               render={(props) => (
@@ -68,12 +87,12 @@ class App extends Component {
                 />
               )}
             />
+            </>            
           }
+
         </Switch>
       </BrowserRouter>
-    )
-      
-   
+    );
   }
 }
 export default App;
