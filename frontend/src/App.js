@@ -36,27 +36,40 @@ class App extends Component {
     });
   };
 
-  render() {
-    return (
+  CorrectSignIn = (bool) => {
+    this.setState({isSignIn: bool})
+  }
+  
+  render(){
+    const {isSignIn} = this.state;
+     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path='/' component={UnauthMain} />
-          <Route
-            exact
-            path='/Register'
-            render={(props) => <Register {...props} UserInfo={this.UserInfo} />}
-          />
-          <Route exact path='/SignIn' component={SignIn} />
-          <Route
-            exact
-            path='/UserPage'
-            render={(props) => <UserPage {...props} />}
-          />
-          <Route exact path='/Map' render={(props) => <Map {...props} />} />
+         {isSignIn === false?
+            <div>
+              <Route exact path="/" component={UnauthMain} />
+              <Route exact path='/Register' 
+                render= {(props) => 
+                  (<Register {...props} UserInfo={this.UserInfo}/>)
+                }/>
+
+              <Route exact path="/SignIn" 
+                render= {(props) => 
+                  (<SignIn {...props} UserInfo={this.UserInfo} CorrectSignIn={this.CorrectSignIn}/>)
+              }/>
+            </div>
+            :
+            <Route exact 
+              path="/UserPage" 
+              render={(props) => (
+                <UserPage {...props}
+                />
+              )}
+            />
+          }
         </Switch>
       </BrowserRouter>
     );
   }
 }
-
 export default App;
