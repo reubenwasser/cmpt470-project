@@ -38,14 +38,17 @@ export default function Search({ panTo, handleMarkers }) {
     try {
       const results = await getGeocode({ address });
       const { lat, lng } = await getLatLng(results[0]);
+      const parameter = {
+        placeId: results[0].place_id,
+      };
       const {
         name,
         types,
         url,
         formatted_address,
-        opening_hours,
-      } = await getDetails(results[0].place_id);
-      // const open_now = opening_hours.isOpen();
+        opening_hours, 
+      } = await getDetails(parameter);
+      // const open_now = opening_hours.isOpen(); 
       const open_now = opening_hours ? opening_hours.isOpen() : null;
       panTo({ lat, lng });
       handleMarkers({
