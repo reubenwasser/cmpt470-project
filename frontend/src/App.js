@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import UnauthMain from './Components/UnauthMain/UnauthMain';
-import Register from './Components/Register/Register';
-import UserPage from './Components/UserPage/UserPage';
-import SignIn from './Components/SignIn/SignIn';
-import Map from './Components/Map/Map';
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import UnauthMain from './Components/UnauthMain/UnauthMain'
+import Register from './Components/Register/Register'
+import UserPage from './Components/UserPage/UserPage'
+import SignIn from './Components/SignIn/SignIn'
+import Stats from './Components/Stats/Stats'
 
 document.title = 'Covid-19 Pandemic';
 
@@ -45,6 +45,7 @@ class App extends Component {
      return (
       <BrowserRouter>
         <Switch>
+
          {isSignIn === false?
             <>
             <div>
@@ -62,6 +63,13 @@ class App extends Component {
                 render={(props) => 
                   (<Map />)
               }/>
+              <Route exact 
+                path="/Stats" 
+                render={(props) => (
+                  <Stats {...props}
+                  />
+                )}
+              />
             </div>
             </>
             :
@@ -75,6 +83,7 @@ class App extends Component {
             />
             </>            
           }
+
         </Switch>
       </BrowserRouter>
     );
