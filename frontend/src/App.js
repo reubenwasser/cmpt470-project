@@ -40,54 +40,46 @@ class App extends Component {
   CorrectSignIn = (bool) => {
     this.setState({isSignIn: bool})
   }
-
-  // componentDidMount() {
-  //   window.history.pushState(null, null, window.location.pathname);
-  //   window.addEventListener('popstate', window.history.go(0));
-  // }
   
   render(){
     const {isSignIn} = this.state;
      return (
       <BrowserRouter useEffect>
         <Switch>
-
          {isSignIn === false?
-            <>
             <div>
               <Route exact path="/" component={UnauthMain} />
               <Route exact path='/Register' 
-                render= {(props) => 
-                  (<Register {...props} UserInfo={this.UserInfo}/>)
-                }/>
+                render= {(props) => (
+                  <Register {...props} UserInfo={this.UserInfo}/>
+                )}
+              />
 
               <Route exact path="/SignIn" 
-                render= {(props) => 
-                  (<SignIn {...props} UserInfo={this.UserInfo} CorrectSignIn={this.CorrectSignIn}/>)
-              }/>
+                render= {(props) => (
+                  <SignIn {...props} UserInfo={this.UserInfo} CorrectSignIn={this.CorrectSignIn}/>
+                )}
+              />
+
               <Route exact path="/Map"
-                render={(props) => 
-                  (<Map {...props}/>)
-              }/>
+                render={(props) => (
+                  <Map {...props}/>
+                )}
+              />
               <Route exact 
                 path="/Stats" 
                 render={(props) => (
-                  <Stats {...props}
-                  />
+                  <Stats {...props}/>
                 )}
               />
             </div>
-            </>
             :
-            <>
             <Route exact 
               path="/UserPage" 
               render={(props) => (
-                <UserPage {...props}
-                />
+                <UserPage {...props} CorrectSignIn={this.CorrectSignIn}/>
               )}
             />
-            </>            
           }
 
         </Switch>

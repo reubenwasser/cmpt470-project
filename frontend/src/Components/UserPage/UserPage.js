@@ -85,8 +85,11 @@ class UserPage extends React.Component {
 	    });
 	}
 
-
-
+	componentDidMount() {
+  		window.onpopstate = () => {
+  			this.props.CorrectSignIn(false);
+  		}
+	}
 
 	render(){
 		return(

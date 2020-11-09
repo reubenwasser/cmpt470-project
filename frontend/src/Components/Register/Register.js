@@ -81,7 +81,7 @@ class Register extends React.Component {
           <li class="navSign"><a href="SignIn">Sign-in</a></li>
         </ul>
         
-        <div>
+        <div onKeyDown={this.onKeyPressedRegister}>
           <div class="regisUserForm">
             <h1 class="title">Register</h1>
             <label>Full Name : </label><br/><br/>
@@ -136,6 +136,7 @@ class Register extends React.Component {
             <datalist id="cities">
                 <option>Vancouver</option>
                 <option>Victoria</option> 
+                <option>Richmond</option> 
                 <option>Edmonton</option> 
                 <option>Calgary</option>  
                 <option>Regina</option> 
