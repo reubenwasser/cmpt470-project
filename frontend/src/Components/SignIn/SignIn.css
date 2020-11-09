@@ -1,9 +1,12 @@
-ul {
+.nav {
+  position: fixed;
+  top:0;
+  width: 100%;
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: #4B4C54 ;
 }
 
 li {
@@ -24,4 +27,54 @@ li a:hover:not(.active) {
 
 .active {
   background-color: #4CAF50;
+}
+.navReg {
+  width: 100px;
+  float:right; 
+}
+.navSign {
+  width: 100px;
+  float:right;
+  
+}
+.navSign a {
+  color:#4563FE ;
+}
+.navHome {
+  width:100px;
+  float:left;
+}
+.navStat {
+  width: 100px;
+}
+
+.addUserForm {
+  margin-top: 100px;
+  margin-left: 300px;
+}
+.label_title{
+  font-size:50px;
+}
+.addUserForm label {
+  margin-left: 30px;
+  font-size: 30px;
+}
+.signInput {
+  width: 400px;
+  margin-left: 60px;
+  padding: 12px 20px;
+  border: 1px solid #ccc;
+}
+.signForgot {
+  margin-left: 30px;
+  font-size: 20px;
+}
+.signSubmit {
+  margin-top: 20px;
+  margin-left:30px;
+  padding: 12px 190px;
+}
+.signWrong {
+  margin-left: 30px;
+  color:red;
 }

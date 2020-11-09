@@ -91,10 +91,11 @@ class UserPage extends React.Component {
 	render(){
 		return(
 			<div>
-				<ul>
-				  <li><a class="active" href="/UserPage">UserPage</a></li>
-				  <li><a href="/">log-off</a></li>
+				<ul class="nav">
+				  <li class="navUser"><a class="active" href="/UserPage">UserPage</a></li>
+				  <li class="userLog"><a href="/">log-off</a></li>
 				</ul>
+				
 				<div class="page_body">
 					<h1>Check if you have COVID</h1>
 					<button onClick={this.handleOpenModal}>Open Form</button>
