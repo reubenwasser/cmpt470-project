@@ -75,7 +75,7 @@ class Register extends React.Component {
 
         <ul class="nav">
           <li class="navHome"><a href="/">Home</a></li>
-          <li><a href="Stats">Stats</a></li>
+          <li class="navStat"><a href="Stats">Stats</a></li>
           <li class="navReg"><a class="active" href="Register" on>Register</a></li>
           <li class="navSign"><a href="SignIn">Sign-in</a></li>
         </ul>
@@ -156,7 +156,7 @@ class Register extends React.Component {
               onClick={this.onSubmitRegister}
               type="submit" 
               value="Register"/>
-            <a href="SignIn" className='ma1 secret dim pointer f6 dib br2' on>Return to Sign-in</a>   
+            <p>Already have an account? <a href="SignIn">Sign in</a>.</p>  
           </div>
         </div>  
       </div>

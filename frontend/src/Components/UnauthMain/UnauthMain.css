@@ -39,6 +39,10 @@ li a:hover:not(.active) {
   width:100px;
   float:left;
 }
+.navStat {
+  width: 100px;
+}
+
 .bodyMain {
   margin-top: 65px;
   margin-left: 15px;

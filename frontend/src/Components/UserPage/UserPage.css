@@ -1,15 +1,13 @@
-ul {
+.nav {
+  position: fixed;
+  top:0;
+  width: 100%;
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: #4B4C54 ;
 }
-
-li {
-  float: left;
-}
-
 li a {
   display: block;
   color: white;
@@ -25,8 +23,17 @@ li a:hover:not(.active) {
 .active {
   background-color: #4CAF50;
 }
+.navUser {
+  width:100px;
+  float:left;
+}
+.userLog {
+  width:100px;
+  float:right;
+}
 
 .page_body {
+  margin-top: 70px;
   margin-left: 10px;
 
 }

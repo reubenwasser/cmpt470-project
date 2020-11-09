@@ -55,11 +55,7 @@ class SignIn extends Component {
 
 				<ul class="nav">
 				  <li class="navHome"><a href="/">Home</a></li>
-<<<<<<< HEAD
-				  <li><a href="Stats">Stats</a></li>
-=======
-          <li><a href="Stats">Stats</a></li>
->>>>>>> 3c129c9adf38c3549c9a19580ddffec87c9e5383
+				  <li class="navStat"><a href="Stats">Stats</a></li>
 				  <li class="navReg"><a href="Register" on>Register</a></li>
 				  <li class="navSign"><a class="active" href="SignIn">Sign-in</a></li>
 				</ul>

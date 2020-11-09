@@ -34,40 +34,44 @@ class Stats extends React.Component {
 	{
 		return(
 			<div>
-				<ul>
-				  <li><a href="/">Home</a></li>
-				  <li><a href="SignIn">Sign-in</a></li>
-				  <li><a href="Register" on>Register</a></li>
-				  <li><a class="active" href="Stats" on>Stats</a></li>
+				<ul class="nav">
+				  <li class="navHome"><a href="/">Home</a></li>
+				  <li class="navStat"><a class="active" href="Stats">Stats</a></li>
+				  <li class="navReg"><a href="Register" on>Register</a></li>
+				  <li class="navSign"><a href="SignIn">Sign-in</a></li>
 				</ul>
-				<h1 className="Text">Current Stats - Canada</h1>
-				<h3 className="Text1">Update @</h3>
-				<h3 className="ReportDate">{this.state.date}</h3>
-				<br></br>
-				<table>
-					<tbody>
-						<tr>
-							<th>Province</th>
-							<th>New Cases</th>
-							<th>Cumulative Cases</th>
-							<th>New Deaths</th>
-							<th>Cumulative Deaths</th>
-						</tr>
-				{this.state.summary.map((province_detial,index) => {
-								
-						return <tr key ={index}>
-							<td>{province_detial.province}</td>
-							<td>{province_detial.cases}</td>
-							<td>{province_detial.cumulative_cases}</td>
-							<td>{province_detial.deaths}</td>
-							<td>{province_detial.cumulative_deaths}</td>
-						</tr>
-						
-				})}
-					</tbody>
-				</table>
-				{/* <img src="canada_map.png" alt="Italian Trulli"></img> */}
-				<img className="map" src={map} alt="Logo"  width="700" height="576"/>
+				<div class="statBody">
+					<h1 className="Text">Current Stats - Canada</h1>
+					<h3 className="Text1">Update @</h3>
+					<h3 className="ReportDate">{this.state.date}</h3>
+					<br></br>
+					<table>
+						<tbody>
+							<tr>
+								<th>Province</th>
+								<th>New Cases</th>
+								<th>Cumulative Cases</th>
+								<th>New Deaths</th>
+								<th>Cumulative Deaths</th>
+							</tr>
+					{this.state.summary.map((province_detial,index) => {
+									
+							return <tr key ={index}>
+								<td>{province_detial.province}</td>
+								<td>{province_detial.cases}</td>
+								<td>{province_detial.cumulative_cases}</td>
+								<td>{province_detial.deaths}</td>
+								<td>{province_detial.cumulative_deaths}</td>
+							</tr>
+							
+					})}
+						</tbody>
+					</table>
+					{/* <img src="canada_map.png" alt="Italian Trulli"></img> */}
+					<img class="statMap" src={map} alt="Logo"/>
+				</div>
+		
+				
 			</div>
 		)
 	}
