@@ -46,6 +46,7 @@ class App extends Component {
       <BrowserRouter>
         <Switch>
          {isSignIn === false?
+            <>
             <div>
               <Route exact path="/" component={UnauthMain} />
               <Route exact path='/Register' 
@@ -57,8 +58,14 @@ class App extends Component {
                 render= {(props) => 
                   (<SignIn {...props} UserInfo={this.UserInfo} CorrectSignIn={this.CorrectSignIn}/>)
               }/>
+              <Route exact path="/Map"
+                render={(props) => 
+                  (<Map />)
+              }/>
             </div>
+            </>
             :
+            <>
             <Route exact 
               path="/UserPage" 
               render={(props) => (
@@ -66,6 +73,7 @@ class App extends Component {
                 />
               )}
             />
+            </>            
           }
         </Switch>
       </BrowserRouter>

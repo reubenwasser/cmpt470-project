@@ -93,6 +93,7 @@ class UserPage extends React.Component {
 			<div>
 				<ul>
 				  <li><a class="active" href="/UserPage">UserPage</a></li>
+          <li><a href="/Map">Map</a></li>
 				  <li><a href="/">log-off</a></li>
 				</ul>
 				<div class="page_body">
