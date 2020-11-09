@@ -44,3 +44,8 @@ li a:hover:not(.active) {
   margin-left: 15px;
 }
 
+.map{
+  display: inline-block;
+  margin-left: 30px;
+}
+
