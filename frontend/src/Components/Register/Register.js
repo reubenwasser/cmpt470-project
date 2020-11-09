@@ -72,41 +72,27 @@ class Register extends React.Component {
     const {validateEmail} = this.state;
     return(
       <div>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="SignIn">Sign-in</a></li>
-          <li><a class="active" href="Register">Register</a></li>
+        <ul class="nav">
+          <li class="navHome"><a href="/">Home</a></li>
+          <li class="navReg"><a class="active" href="Register" on>Register</a></li>
+          <li class="navSign"><a href="SignIn">Sign-in</a></li>
         </ul>
-        <div className='text'>
-          <h1>Did you know?</h1>
-          <p><strong>Coronavirus disease (COVID-19)</strong> is an infectious 
-              disease caused by a newly discovered coronavirus. </p>
-          <p>Most people infected with the COVID-19 virus will experience 
-            mild to moderate respiratory illness and recover without 
-            requiring special treatment.  Older people, and those with 
-            underlying medical problems like cardiovascular disease, 
-            diabetes, chronic respiratory disease, and cancer are more 
-            likely to develop serious illness.</p>
-          <details>
-              <summary>Read more!!!</summary>
-                <a href="https://www.who.int/health-topics/coronavirus#tab=tab_1">WHO CoronaVirus Information</a>
-          </details> 
-        </div>
-        <div class="formPopup" id="usersForm" >
-          <div class="addUserForm">
-            <h1 class="label_title">Register</h1>
-            <label>Full Name : </label>
+        
+        <div>
+          <div class="regisUserForm">
+            <h1 class="title">Register</h1>
+            <label>Full Name : </label><br/><br/>
             <input 
-              className='ma1'
+              class="regisInput"
               id="fn" 
               type="text" 
               name="fullname" 
               placeholder="eg: Anderson Parker" 
               onChange={this.onNameChange}/>
             <br/>
-            <label>UserName : </label>
+            <label>UserName : </label><br/><br/>
             <input 
-              className='ma1'
+              class="regisInput"
               id="email" 
               type="email" 
               name="email" 
@@ -114,9 +100,9 @@ class Register extends React.Component {
               placeholder="eg: example@email.com" 
               onChange={this.onEmailChange}/>
             <br/>
-            <label>password: </label>
+            <label>password: </label><br/><br/>
             <input
-              className='ma1' 
+              class="regisInput" 
               id="password" 
               type="password" 
               name="email" 
@@ -126,18 +112,18 @@ class Register extends React.Component {
               onfocus="this.placeholder = ''"
               onChange={this.onPasswordChange}/>
             <br/>
-            <label>Date of Birth: </label>
+            <label>Date of Birth: </label><br/><br/>
             <input
-              className='ma1' 
+              class="regisInputDate" 
               id="dob" 
               type="date" 
               name="dob" 
               size="50" required 
               onChange={this.onDoBChange}/>
             <br/>
-            <label>City: </label>
+            <label>City: </label><br/><br/>
             <input
-              className='ma1' 
+              class="regisInput"
               id="city" 
               type="text" 
               name="city" 
@@ -159,12 +145,12 @@ class Register extends React.Component {
             </datalist>
             <br/>
             {!validateEmail ?
-              <p className='red ma1'>Email is not avaiable to use. Please use different email!</p>
+              <p class="regisWrong">Email is not avaiable to use. Please use different email!</p>
               :
               <p className='ma1'></p>
             }
             <input
-              className='ma1'
+              class="regisSubmit"
               onClick={this.onSubmitRegister}
               type="submit" 
               value="Register"/>

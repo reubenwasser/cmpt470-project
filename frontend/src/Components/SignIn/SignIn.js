@@ -52,44 +52,46 @@ class SignIn extends Component {
 		const {isCorrect} = this.state;
 		return(
 			<div>
-				<ul>
-				  <li><a href="/">Home</a></li>
-				  <li><a class="active" href="SignIn">Sign-in</a></li>
-				  <li><a href="Register" on>Register</a></li>
+
+				<ul class="nav">
+				  <li class="navHome"><a href="/">Home</a></li>
+				  <li class="navReg"><a href="Register" on>Register</a></li>
+				  <li class="navSign"><a class="active" href="SignIn">Sign-in</a></li>
 				</ul>
 
 				<div>
-					<div class="formPopup" id="usersForm" >
 			          <div class="addUserForm">
 			            <h1 class="label_title">Sign In</h1>
-			            <label>Username: </label>
-			            <input className='ma1' id="email" 
+			            <label>Username: </label><br/><br/>
+			            <input class="signInput" 
+			            	id="email" 
 			                type="email" 
 			                name="email" 
 			                size="50" required 
 			                placeholder="eg: example@email.com" 
 			                onChange={this.onEmailChange}/>
-			            <br/>
-			            <label>Password: </label>
-			            <input className='ma' id="password" type="password" name="email" size="50" required
+			            <br/><br/>
+			            <label>Password: </label><br/><br/>
+			            <input class="signInput" id="password" type="password" name="email" size="50" required
 			                placeholder="eg: bubbleteaislife" 
 			                onfocus="this.placeholder = ''"
 			                onChange={this.onPasswordChange}/>
-			            <br/>
+			            <br/><br/>
 			            {!isCorrect ?
-				      		<p className='red ma1'>Wrong username or password.</p>
+				      		<p class="signWrong">Wrong username or password.</p>
 				      		:
 				      		<p className='ma1'></p>
 				      	}
+				      	<a class="signForgot" href="Register">Forgot your password?</a><br/>
 			            <input
-			            	className='ma1'
+			            	class="signSubmit"
 			            	onClick={this.onSubmitSignin}
 			            	type="submit" 
 			            	value="Sign in"/>
-			            <a href="Register" className='pointer f6 dib' on>Forgot your password?</a>   
+			               
 			          </div>
 			        </div>  
-				</div>
+				
 			</div>
 
 		)
