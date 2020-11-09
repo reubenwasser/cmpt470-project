@@ -72,8 +72,10 @@ class Register extends React.Component {
     const {validateEmail} = this.state;
     return(
       <div>
+
         <ul class="nav">
           <li class="navHome"><a href="/">Home</a></li>
+          <li><a href="Stats">Stats</a></li>
           <li class="navReg"><a class="active" href="Register" on>Register</a></li>
           <li class="navSign"><a href="SignIn">Sign-in</a></li>
         </ul>

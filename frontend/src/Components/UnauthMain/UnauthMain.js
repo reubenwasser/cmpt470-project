@@ -6,10 +6,13 @@ class UnauthMain extends Component {
 	render() {
 		return(
 			<div>
+
 				<ul class="nav">
 				  <li class="navHome"><a class="active" href="/">Home</a></li>
+          <li><a href="Stats">Stats</a></li>
 				  <li class="navReg"><a href="Register" on>Register</a></li>
 				  <li class="navSign"><a href="SignIn">Sign-in</a></li>
+
 				</ul>
 				<div class="bodyMain"> 
 			    	<h1>Did you know?</h1>
