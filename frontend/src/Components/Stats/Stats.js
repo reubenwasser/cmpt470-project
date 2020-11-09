@@ -1,15 +1,18 @@
 import React from 'react'; 
 import "./Stats.css"
 import moment from 'moment'
+import map from "./canada_map.png"
 
 
 class Stats extends React.Component {
-
-	state = {
-		loading: true,
-		summary:[],
-		date:'',
-
+	constructor(props) {
+		super(props);
+		this.state = 
+		{
+			loading: true,
+			summary:[],
+			date:'',
+			}
 	};
 
 	async componentDidMount(){
@@ -31,12 +34,20 @@ class Stats extends React.Component {
 	{
 		return(
 			<div>
-				<h1>Current Stats - Canada</h1>
-				<h1 className="ReportDate">{this.state.date}</h1>
+				<ul>
+				  <li><a href="/">Home</a></li>
+				  <li><a href="SignIn">Sign-in</a></li>
+				  <li><a href="Register" on>Register</a></li>
+				  <li><a class="active" href="Stats" on>Stats</a></li>
+				</ul>
+				<h1 className="Text">Current Stats - Canada</h1>
+				<h3 className="Text1">Update @</h3>
+				<h3 className="ReportDate">{this.state.date}</h3>
+				<br></br>
 				<table>
 					<tbody>
 						<tr>
-							<th>province</th>
+							<th>Province</th>
 							<th>New Cases</th>
 							<th>Cumulative Cases</th>
 							<th>New Deaths</th>
@@ -55,6 +66,8 @@ class Stats extends React.Component {
 				})}
 					</tbody>
 				</table>
+				{/* <img src="canada_map.png" alt="Italian Trulli"></img> */}
+				<img className="map" src={map} alt="Logo"  width="700" height="576"/>
 			</div>
 		)
 	}

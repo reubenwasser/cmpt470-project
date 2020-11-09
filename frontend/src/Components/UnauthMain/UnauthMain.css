@@ -26,3 +26,8 @@ li a:hover:not(.active) {
   background-color: #4CAF50;
 }
 
+.map{
+  display: inline-block;
+  margin-left: 30px;
+}
+
