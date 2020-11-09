@@ -36,11 +36,16 @@ class App extends Component {
   CorrectSignIn = (bool) => {
     this.setState({isSignIn: bool})
   }
+
+  // componentDidMount() {
+  //   window.history.pushState(null, null, window.location.pathname);
+  //   window.addEventListener('popstate', window.history.go(0));
+  // }
   
   render(){
     const {isSignIn} = this.state;
      return (
-      <BrowserRouter>
+      <BrowserRouter useEffect>
         <Switch>
          {isSignIn === false?
             <div>
