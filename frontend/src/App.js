@@ -4,6 +4,7 @@ import UnauthMain from './Components/UnauthMain/UnauthMain'
 import Register from './Components/Register/Register'
 import UserPage from './Components/UserPage/UserPage'
 import SignIn from './Components/SignIn/SignIn'
+import Stats from './Components/Stats/Stats'
 
 document.title = "Covid-19 Pandemic";
 
@@ -42,6 +43,7 @@ class App extends Component {
      return (
       <BrowserRouter>
         <Switch>
+
          {isSignIn === false?
             <div>
               <Route exact path="/" component={UnauthMain} />
@@ -54,6 +56,13 @@ class App extends Component {
                 render= {(props) => 
                   (<SignIn {...props} UserInfo={this.UserInfo} CorrectSignIn={this.CorrectSignIn}/>)
               }/>
+              <Route exact 
+                path="/Stats" 
+                render={(props) => (
+                  <Stats {...props}
+                  />
+                )}
+              />
             </div>
             :
             <Route exact 
@@ -64,6 +73,7 @@ class App extends Component {
               )}
             />
           }
+
         </Switch>
       </BrowserRouter>
     )
