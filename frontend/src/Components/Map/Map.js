@@ -29,7 +29,12 @@ class Map extends React.Component {
         </div>
         <div className="map">
           <MapContainer center={position} zoom={13} scrollWheelZoom={true}>
-            <EsriLeafletGeoSearch />
+            <EsriLeafletGeoSearch 
+            eventHandlers={{
+              requeststart: () => console.log('Started request...'),
+              requestend: () => console.log('Ended request...'),
+              results: (r) => console.log(r)
+            }}/>
             <Layer />
           </MapContainer>,
         </div>

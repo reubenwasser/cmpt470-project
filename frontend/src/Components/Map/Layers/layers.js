@@ -1,15 +1,13 @@
 import React from 'react';
-import { Marker, Popup, TileLayer, LayersControl, Circle, LayerGroup, FeatureGroup, Rectangle } from "react-leaflet";
+import { Marker, Popup, TileLayer, LayersControl, Circle, LayerGroup, FeatureGroup } from "react-leaflet";
 
 
+import Attractions from './Attractions/attractions.js'
 
 
 export default function Layers() {
     const center = [51.505, -0.09]
-    const rectangle = [
-        [51.49, -0.08],
-        [51.5, -0.06],
-        ]
+
     return (
         <LayersControl position="topright">
             <LayersControl.BaseLayer checked name="OpenStreetMap.Mapnik">
@@ -53,11 +51,9 @@ export default function Layers() {
                 </LayerGroup>
             </LayerGroup>
             </LayersControl.Overlay>
-            <LayersControl.Overlay name="Feature group">
+            <LayersControl.Overlay name="Attractions">
             <FeatureGroup pathOptions={{ color: 'purple' }}>
-                <Popup>Popup in FeatureGroup</Popup>
-                <Circle center={[51.51, -0.06]} radius={200} />
-                <Rectangle bounds={rectangle} />
+                <Attractions />
             </FeatureGroup>
             </LayersControl.Overlay>
         </LayersControl>
