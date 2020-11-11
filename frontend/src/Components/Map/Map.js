@@ -1,8 +1,10 @@
 import React from "react";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { MapContainer } from "react-leaflet";
 import EsriLeafletGeoSearch from "react-esri-leaflet/plugins/EsriLeafletGeoSearch";
 
+
 import './Map.css';
+import Layer from './Layers/layers.js'
 
 class Map extends React.Component {
 //Vancouver coordinates
@@ -26,27 +28,12 @@ class Map extends React.Component {
           </ul>
         </div>
         <div className="map">
-          <MapContainer center={position} zoom={this.state.zoom} scrollWheelZoom={true}>
-            <TileLayer
-              attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <Marker position={[49.28273, -123.120735]}>
-            <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-            </Marker>
-            <EsriLeafletGeoSearch
-              position="topleft"
-              eventHandlers={{
-                requeststart: () => console.log('Started request...'),
-                requestend: () => console.log('Ended request...'),
-                results: (r) => console.log(r)
-              }} />
-            
-          </MapContainer>
+          <MapContainer center={position} zoom={13} scrollWheelZoom={true}>
+            <EsriLeafletGeoSearch />
+            <Layer />
+          </MapContainer>,
         </div>
-    </div>
+      </div>
     );
   }
 }
