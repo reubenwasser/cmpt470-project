@@ -1,6 +1,5 @@
 import React from "react";
-import { GeoJSON } from "react-leaflet";
-import ClusterLayer from "react-esri-leaflet/plugins/ClusterLayer";
+import { GeoJSON, Marker } from "react-leaflet";
 
 
 const overpass = require("query-overpass");

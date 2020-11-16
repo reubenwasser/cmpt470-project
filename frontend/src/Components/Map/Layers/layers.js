@@ -1,5 +1,6 @@
 import React from 'react';
 import { Marker, Popup, TileLayer, LayersControl, Circle, LayerGroup, FeatureGroup } from "react-leaflet";
+import MarkerClusterGroup from 'react-leaflet-markercluster';
 
 
 import Attractions from './Attractions/attractions.js'
@@ -53,7 +54,9 @@ export default function Layers() {
             </LayersControl.Overlay>
             <LayersControl.Overlay name="Attractions">
             <FeatureGroup pathOptions={{ color: 'purple' }}>
-                <Attractions />
+                <MarkerClusterGroup>
+                    <Attractions />
+                </MarkerClusterGroup>
             </FeatureGroup>
             </LayersControl.Overlay>
         </LayersControl>
