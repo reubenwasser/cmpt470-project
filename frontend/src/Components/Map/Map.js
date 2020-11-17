@@ -1,9 +1,9 @@
 import React from "react";
-import { MapContainer, TileLayer } from "react-leaflet";
+import { MapContainer } from "react-leaflet";
 import EsriLeafletGeoSearch from "react-esri-leaflet/plugins/EsriLeafletGeoSearch";
 
 import './Map.css';
-import Layers from './Layers/layers.js'
+import Layers from './Layers/Layers.js'
 
 class Map extends React.Component {
 //Vancouver coordinates
@@ -35,7 +35,7 @@ class Map extends React.Component {
               results: (r) => console.log(r)
             }}/>
               <Layers />
-          </MapContainer>,
+          </MapContainer>
         </div>
       </div>
     );
