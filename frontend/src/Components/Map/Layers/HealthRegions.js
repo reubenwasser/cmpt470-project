@@ -1,7 +1,7 @@
 import React from 'react'
 import { GeoJSON } from 'react-leaflet'
 import useSwr from 'swr'
-import boundariesData from "./HealthBoundaries.json"
+import boundariesData from "../../../Data/healthboundaries.json"
 
 // In this file we need to join the covid api data with the health region boundaries
 

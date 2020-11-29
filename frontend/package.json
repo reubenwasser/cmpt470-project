@@ -20,6 +20,7 @@
     "react-esri-leaflet": "^0.2.2",
     "react-leaflet": "^3.0.2",
     "react-leaflet-geojson-cluster": "^0.1.8",
+    "react-leaflet-kml": "^2.0.2",
     "react-leaflet-markercluster": "^3.0.0-rc1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",

@@ -3,13 +3,12 @@ import { Marker, Popup, TileLayer, LayersControl, FeatureGroup } from "react-lea
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 
 
-
-import HealthRegions from "./HealthRegions";
 import Attractions from './Attractions.js';
+import HealthRegions from './HealthRegions.js';
 
 
 export default function Layers() {
-    const center = [51.505, -0.09]
+    const center = [51.505, -0.09];
 
     return (
         <LayersControl position="topright">
@@ -33,7 +32,9 @@ export default function Layers() {
             </Marker>
             </LayersControl.Overlay>
             <LayersControl.Overlay checked name="Health Regions">
-                <HealthRegions />
+                <FeatureGroup pathOptions={{ color: 'red' }}>
+                    <HealthRegions />
+                </FeatureGroup>
             </LayersControl.Overlay>
             <LayersControl.Overlay name="Attractions">
             <FeatureGroup pathOptions={{ color: 'purple' }}>
