@@ -36,7 +36,6 @@ export default class Attractions extends React.Component {
 
   render() {
     console.log("OVERPASS API BEING LOADED");
-    console.log(this.state.geojson);
     return this.state.geojson ? <GeoJSON data={this.state.geojson}/>: null;
   }
 }

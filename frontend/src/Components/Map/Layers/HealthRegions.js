@@ -1,26 +1,31 @@
 import React from 'react'
 import { GeoJSON } from 'react-leaflet'
-import useSwr from 'swr'
-import boundariesData from "../../../Data/healthboundaries.json"
 
-// In this file we need to join the covid api data with the health region boundaries
+export default class HealthRegions extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      geojson: undefined
+    };
+  }
 
-const fetcher = (...args) => fetch(...args).then(response => response.json())
+  // access api from https://resources-covid19canada.hub.arcgis.com/datasets/regionalhealthboundaries-1/geoservice?geometry=113.776%2C42.014%2C89.167%2C72.704
+  async componentDidMount() {
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    //const url = "https://api.opencovid.ca/timeseries?stat=cases&loc=hr&date=15-11-2020";
+    const url = "https://opendata.arcgis.com/datasets/3aa9f7b1428642998fa399c57dad8045_0.geojson";
+    const response = await fetch(proxyurl + url);
+    const data = await response.json();
 
-export default function HealthRegions() {
-
-    // Cross origin request blocked for covid api not exactly sure why 
-    // TODO: Remedy Cross origin request error
-    const url = 
-    "https://api.opencovid.ca/timeseries?stat=cases&loc=hr&date=15-11-2020"
-    const {data, error} = useSwr(url, { fetcher })
-
-    const covidData = data && !error ? data : [];
-    // TODO: Join covid api data with HealthBoundaries.json
-
-    console.log("getting boundaries data");
-    return(
-        // TODO: Get health regions to display as Polygons or GeoJSON
-        <GeoJSON data={boundariesData} />
-    )
+    this.setState({geojson: data});
+    console.log(data);
+  }
+  
+    render() 
+    {
+        return(
+             this.state.geojson ? <GeoJSON data={this.state.geojson}/>: null
+        )
+    }
 }
+
