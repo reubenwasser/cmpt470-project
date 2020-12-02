@@ -1,6 +1,39 @@
 import React from 'react'
 import { GeoJSON } from 'react-leaflet'
 
+
+const COLOR_0 = "#4dac26";
+const COLOR_1 = "#b8e186";
+const COLOR_2 = "#ffffbf";
+const COLOR_3 = "#fdae61";
+const COLOR_4 = "#d7191c";
+
+function getColor(d) {
+  return d > 5000
+    ? COLOR_4
+    : d > 1000
+    ? COLOR_3
+    : d > 500
+    ? COLOR_2
+    : d > 50
+    ? COLOR_1
+    : COLOR_0;
+}
+
+function style(feature) {
+  console.log(feature.properties.CurrentCaseCount)
+  return {
+    fillColor: getColor(feature.properties.CurrentCaseCount),
+    weight: 1,
+    opacity: 1,
+    color: "white",
+    dashArray: "3",
+    fillOpacity: 0.8
+  };
+}
+
+
+
 export default class HealthRegions extends React.Component {
   constructor(props) {
     super(props);
@@ -21,10 +54,12 @@ export default class HealthRegions extends React.Component {
     console.log(data);
   }
   
+
+
     render() 
     {
         return(
-             this.state.geojson ? <GeoJSON data={this.state.geojson}/>: null
+          this.state.geojson ? <GeoJSON data={this.state.geojson} style={style} />: null
         )
     }
 }

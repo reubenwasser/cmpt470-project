@@ -1,5 +1,5 @@
 import React from 'react';
-import { Marker, Popup, TileLayer, LayersControl, FeatureGroup } from "react-leaflet";
+import { Marker, Popup, TileLayer, LayersControl, FeatureGroup, Tooltip } from "react-leaflet";
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 
 
@@ -32,7 +32,10 @@ export default function Layers() {
             </Marker>
             </LayersControl.Overlay>
             <LayersControl.Overlay checked name="Health Regions">
-                <FeatureGroup pathOptions={{ color: 'red' }}>
+                <FeatureGroup >
+                    <Popup>
+                        A pretty CSS3 popup. <br /> Easily customizable.
+                    </Popup>
                     <HealthRegions />
                 </FeatureGroup>
             </LayersControl.Overlay>
