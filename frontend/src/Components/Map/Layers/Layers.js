@@ -5,10 +5,16 @@ import MarkerClusterGroup from 'react-leaflet-markercluster';
 
 import Attractions from './Attractions.js';
 import HealthRegions from './HealthRegions.js';
+import AttractionOverlay from '../Attractions/AttractionOverlay'
 
 
 export default function Layers() {
     const center = [51.505, -0.09];
+    const [attractionSearch, setAttractionSearch] = React.useState([]);
+
+    const onSearchChange = (key, value) => {
+      setAttractionSearch([key, value]);
+    }
 
     return (
         <LayersControl position="topright">
@@ -41,8 +47,9 @@ export default function Layers() {
             </LayersControl.Overlay>
             <LayersControl.Overlay name="Attractions">
             <FeatureGroup pathOptions={{ color: 'purple' }}>
+                <AttractionOverlay handleSearchChange={onSearchChange}/>
                 <MarkerClusterGroup>
-                    <Attractions />
+                    <Attractions searchParams={attractionSearch}/>
                 </MarkerClusterGroup>
             </FeatureGroup>
             </LayersControl.Overlay>
