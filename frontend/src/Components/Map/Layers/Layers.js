@@ -39,9 +39,6 @@ export default function Layers() {
             </LayersControl.Overlay>
             <LayersControl.Overlay checked name="Health Regions">
                 <FeatureGroup >
-                    <Popup>
-                        A pretty CSS3 popup. <br /> Easily customizable.
-                    </Popup>
                     <HealthRegions />
                 </FeatureGroup>
             </LayersControl.Overlay>

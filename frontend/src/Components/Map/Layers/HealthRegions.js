@@ -1,10 +1,10 @@
 import React from 'react'
 import { GeoJSON } from 'react-leaflet'
 
-
+let mapRef;
 const COLOR_0 = "#4dac26";
 const COLOR_1 = "#b8e186";
-const COLOR_2 = "#ffffbf";
+const COLOR_2 = "#ffeda0";
 const COLOR_3 = "#fdae61";
 const COLOR_4 = "#d7191c";
 
@@ -32,15 +32,37 @@ function style(feature) {
   };
 }
 
-
+// function zoomToFeature(e) {
+//   mapRef.fitBounds(e.target.getBounds());
+// }
 
 export default class HealthRegions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      geojson: undefined
+      geojson: undefined,
+      selected: undefined,
+      region: undefined,
+      count: undefined
     };
   }
+
+  onEachFeature = (feature, layer) => {
+    const popupContent = `Health Region: ${feature.properties.ENGNAME} <br> 
+                          Current Cases: ${feature.properties.CurrentCaseCount} <br>
+                          New Cases Last 7 Days: ${feature.properties.NewCases7Day} <br>
+                          New Cases Las 7 Days Per 100,000: ${feature.properties.NewCaseRate100K7Day}`;
+    const popupOptions =     
+      {
+      'maxWidth': '400',
+      'width': '200',
+      'className' : 'popupCustom'
+      }
+    if (feature.properties && feature.properties.popupContent) {
+      popupContent += feature.properties.popupContent;
+    }
+    layer.bindPopup(popupContent, popupOptions);
+  };
 
   // access api from https://resources-covid19canada.hub.arcgis.com/datasets/regionalhealthboundaries-1/geoservice?geometry=113.776%2C42.014%2C89.167%2C72.704
   async componentDidMount() {
@@ -53,13 +75,10 @@ export default class HealthRegions extends React.Component {
     this.setState({geojson: data});
     console.log(data);
   }
-  
-
-
     render() 
     {
         return(
-          this.state.geojson ? <GeoJSON data={this.state.geojson} style={style} />: null
+          this.state.geojson ? <GeoJSON data={this.state.geojson} style={style} onEachFeature={this.onEachFeature} />: null
         )
     }
 }

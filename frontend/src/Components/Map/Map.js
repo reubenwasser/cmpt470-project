@@ -10,7 +10,7 @@ class Map extends React.Component {
   state = {
     lat: 49.28273,
     long: -123.120735,
-    zoom: 11
+    zoom: 7
   };
 
   render() {
@@ -27,7 +27,7 @@ class Map extends React.Component {
           </ul>
         </div>
         <div className="map">
-          <MapContainer center={position} zoom={13} scrollWheelZoom={true} maxZoom={20}>
+          <MapContainer center={position} zoom={this.state.zoom} scrollWheelZoom={true} maxZoom={20}>
             <EsriLeafletGeoSearch 
             eventHandlers={{
               requeststart: () => console.log('Started request...'),
