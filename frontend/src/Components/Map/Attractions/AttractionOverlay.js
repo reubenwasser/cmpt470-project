@@ -5,7 +5,7 @@ import './AttractionOverlay.css'
 const keyValues = [
   { key: 'amenity', value: 'Amenity' },
   { key: 'tourism', value: 'Tourism' },
-  { key: 'leisuire', value: 'Leisuire' }
+  { key: 'leisure', value: 'Leisure' }
 ];
 
 const attractions = [
@@ -18,7 +18,6 @@ const attractions = [
     { key: 'cafe', value: 'Cafes' },
     { key: 'community_centre', value: 'Community Centres' },
     { key: 'library', value: 'Libraries' },
-    { key: 'mall', value: 'Malls' }
   ],
   [
     { key: 'hotel', value: 'Hotels' },
@@ -26,7 +25,6 @@ const attractions = [
     { key: 'camp_site', value: 'Camp Sites' },
     { key: 'museum', value: 'Museums' },
     { key: 'gallery', value: 'Galleries' },
-    { key: 'auqarium', value: 'Aquariums' },
     { key: 'viewpoint', value: 'View Points' }
   ],
   [
@@ -34,7 +32,6 @@ const attractions = [
     { key: 'playground', value: 'Playgrounds' },
     { key: 'swimming_pool', value: 'Swimming Pool' },
     { key: 'golf_course', value: 'Golf Courses' },
-    { key: 'track', value: 'Tracks' },
     { key: 'pitch', value: 'Pitches' }
   ]
 ];
@@ -51,6 +48,12 @@ class AttractionOverlay extends React.Component {
   keyOnChange = (e) => {
     this.setState({ key: e.target.selectedIndex });
   }
+
+  valueOnChange = (e) => {
+    this.setState({ value: e.target.selectedIndex });
+  }
+
+
   onSubmit = () => {
     this.props.handleSearchChange(keyValues[this.state.key].key, attractions[this.state.key][this.state.value].key);
   }
@@ -60,12 +63,13 @@ class AttractionOverlay extends React.Component {
       <div className='attractionOverlay'>
         <p id='heading'>Search for attractions:</p>
         <p id='helpText'>Ensure you have the attractions layer enabled.</p>
+        <p id='helpText'>NOTE: The search may take awhile, you will be alerted when the search is done.</p>
         <select id='key' onChange={this.keyOnChange}>
           {keyValues.map((key, i) => {
             return <option key={key.key} id={i}>{key.value}</option>;
           })}
         </select>
-        <select id='value'>
+        <select id='value' onChange={this.valueOnChange}> 
           {attractions[this.state.key].map((point, i) => {
             return <option key={point.key} id={i}>{point.value}</option>;
           })}

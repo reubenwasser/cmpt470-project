@@ -1,5 +1,5 @@
 import React from 'react';
-import { Marker, Popup, TileLayer, LayersControl, FeatureGroup, Tooltip } from "react-leaflet";
+import { Marker, Popup, TileLayer, LayersControl, FeatureGroup, useMap, useMapEvent } from "react-leaflet";
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 
 
@@ -11,6 +11,11 @@ import AttractionOverlay from '../Attractions/AttractionOverlay'
 export default function Layers() {
     const center = [51.505, -0.09];
     const [attractionSearch, setAttractionSearch] = React.useState([]);
+    const [mapBounds, setMapBounds] = React.useState(useMap().getBounds());
+
+    const map = useMapEvent('move', () => {
+      setMapBounds(map.getBounds());
+    });
 
     const onSearchChange = (key, value) => {
       setAttractionSearch([key, value]);
@@ -46,7 +51,7 @@ export default function Layers() {
             <FeatureGroup pathOptions={{ color: 'purple' }}>
                 <AttractionOverlay handleSearchChange={onSearchChange}/>
                 <MarkerClusterGroup>
-                    <Attractions searchParams={attractionSearch}/>
+                    <Attractions searchParams={attractionSearch} mapBounds={mapBounds}/>
                 </MarkerClusterGroup>
             </FeatureGroup>
             </LayersControl.Overlay>
