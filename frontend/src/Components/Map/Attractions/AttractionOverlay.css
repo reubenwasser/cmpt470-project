@@ -1,0 +1,28 @@
+.attractionOverlay {
+  position: absolute;
+  z-index: 5000 !important;
+  background-color: white;
+  width: 300px;
+  top: 9rem;
+  left: 0.6rem;
+  padding: 1rem;
+}
+
+#key {
+  margin-right: 1rem;
+}
+
+#submit {
+  display: block;
+  margin-top: 1rem;
+}
+
+#heading {
+  font-size: large;
+  font-weight: 500;
+}
+
+#helpText {
+  font-size: small;
+  font-style: italic;
+}
