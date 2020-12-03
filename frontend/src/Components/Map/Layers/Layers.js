@@ -24,13 +24,6 @@ export default function Layers() {
                 url="https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
             />
             </LayersControl.BaseLayer>
-            <LayersControl.Overlay name="Marker with popup">
-            <Marker position={center}>
-                <Popup>
-                A pretty CSS3 popup. <br /> Easily customizable.
-                </Popup>
-            </Marker>
-            </LayersControl.Overlay>
             <LayersControl.Overlay checked name="Health Regions">
                 <FeatureGroup >
                     <HealthRegions />

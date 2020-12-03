@@ -48,10 +48,11 @@ export default class HealthRegions extends React.Component {
   }
 
   onEachFeature = (feature, layer) => {
-    const popupContent = `Health Region: ${feature.properties.ENGNAME} <br> 
-                          Current Cases: ${feature.properties.CurrentCaseCount} <br>
-                          New Cases Last 7 Days: ${feature.properties.NewCases7Day} <br>
-                          New Cases Las 7 Days Per 100,000: ${feature.properties.NewCaseRate100K7Day}`;
+    const popupContent = `<strong>Health Region:</strong> ${feature.properties.ENGNAME} <br> 
+                          <strong>Current Cases:</strong> ${feature.properties.CurrentCaseCount} <br>
+                          <strong>New Cases Last 7 Days:</strong> ${feature.properties.NewCases7Day} <br>
+                          <strong>New Cases Last 7 Days Per 100,000:</strong>
+                           ${feature.properties.NewCaseRate100K7Day.toFixed(2)}`;
     const popupOptions =     
       {
       'maxWidth': '400',
