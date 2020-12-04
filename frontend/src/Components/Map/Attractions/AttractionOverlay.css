@@ -1,11 +1,13 @@
 .attractionOverlay {
-  position: absolute;
+  position: fixed;
   z-index: 5000 !important;
   background-color: white;
   width: 300px;
-  top: 44rem;
-  left: 0.6rem;
+  margin-bottom: 1px;
+  margin-left : 1px;
   padding: 1rem;
+  bottom: 1rem;
+  left: 1rem;
 }
 
 #key {
