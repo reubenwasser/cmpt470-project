@@ -6,37 +6,66 @@ class UserPage extends React.Component {
 	constructor(props) {
 	    super(props);
 	    this.state = {
-	      total: "0", 
-	      fever: "0",
-	      cough: "0",
-	      tired: "0",
-	      sore: "0",
-	      diarrhoea: "0",
-	      aches: "0",
-	      pink_eye: "0",
-	      headache: "0",
-	      no_taste: "0",
-	      no_smell: "0",
-	      rash: "0",
-	      breathing: "0",
-	      chest_pain: "0",
-	      movement: "0",
-	      showModal: false
+	      showModal: false,
+	      name: this.props.userInfo.name,
+	      email: this.props.userInfo.email,
+	      userSymptom: {
+	      	fever: "",
+		    cough: "",
+		    tired: "",
+		    sore: "",
+		    diarrhoea: "",
+		    aches: "",
+		    pink_eye: "",
+		    headache: "",
+		    no_taste: "",
+		    no_smell: "",
+		    rash: "",
+		    breathing: "",
+		    chest_pain: "",
+		    movement: "",
+	      },
 
 	    };
-	    this.handleChange = this.handleChange.bind(this);
+	    /*this.handleChange = this.handleChange.bind(this);*/
 	    this.handleOpenModal = this.handleOpenModal.bind(this);
     	this.handleCloseModal = this.handleCloseModal.bind(this);
-	  }
+	}
+
+	setUserSymptom = (data) => {
+		this.setState({
+			userSymptom: {
+				fever: data.fever,
+			    cough: data.cough,
+			    tired: data.tired,
+			    sore: data.sorethroat,
+			    diarrhoea: data.diarrhoea,
+			    aches: data.aches,
+			    pink_eye: data.pinkeye,
+			    headache: data.headache,
+			    no_taste: data.notaste,
+			    no_smell: data.nosmell,
+			    rash: data.rash,
+			    breathing: data.shortbreathing,
+			    chest_pain: data.chestpain,
+			    movement: data.diffmove,
+			}
+		})
+	}
+
 
 	
-  	handleChange(e) {
+  	handleChange = (e) => {
 	    this.setState({
-	      [e.target.name]: parseInt(e.target.value)
+	      userSymptom: {
+	      	[e.target.name]: e.target.value
+	      }
 	    })
-	  }
+	}
 
-	SeePercent = (e) => {
+	
+
+	/*SeePercent = (e) => {
 		this.setState({
 			total:  parseInt(this.state.fever) + 
 					parseInt(this.state.cough) +
@@ -56,7 +85,7 @@ class UserPage extends React.Component {
 		}, function () {
 			this.setState({total: (parseInt(this.state.total)/23)*100})	
 		})	
-	}
+	}*/
 
 
   
@@ -67,38 +96,130 @@ class UserPage extends React.Component {
 	handleCloseModal () {
 	    this.setState({ 
 	    	showModal: false,
-	    	fever: "0",
-			cough: "0",
-		    tired: "0",
-		    sore: "0",
-		    diarrhoea: "0",
-		    aches: "0",
-	      	pink_eye: "0",
-	      	headache: "0",
-	      	no_taste: "0",
-	      	no_smell: "0",
-	      	rash: "0",
-	      	breathing: "0",
-	      	chest_pain: "0",
-	      	movement: "0",
-		    total:0
 	    });
 	}
 
+	onGetSymptoms = () => {
+		fetch('/showSymptom', {
+			method: 'post',
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify({
+				email: this.state.email
+				})
 
+			})
+		.then(response => response.json())
+		.then(res => {
+			/*console.log(res.symptom[0].fever)*/
+			this.setUserSymptom(res.symptom[0]);
+		})
+		
+		document.getElementById('symptomTable').style.display = "table";
+		document.getElementById('symptomTable2').style.display = "table";
+		document.getElementById('closeView').style.display = "inline-block";
+		document.getElementById('editSymp').style.display = "inline-block";
+	}
+	
+	closeView () {
+		document.getElementById('symptomTable').style.display = "none";
+		document.getElementById('symptomTable2').style.display = "none";
+		document.getElementById('closeView').style.display = "none";
+		document.getElementById('editSymp').style.display = "none";
+
+	}
+	editSymp = () => {
+		fetch('/editSymptom', {
+			method: 'post',
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify({
+				email: this.state.email,
+				fever: document.getElementById('fever').value,
+				cough: document.getElementById('cough').value,
+				tired: document.getElementById('tired').value,
+				soreThroat: document.getElementById('sore').value,
+				diarrhoea: document.getElementById('diarrhoea').value,
+				aches: document.getElementById('aches').value,
+				pinkEye: document.getElementById('pink_eye').value,
+				headache: document.getElementById('headache').value,
+				noTaste: document.getElementById('no_taste').value,
+				noSmell: document.getElementById('no_smell').value,
+				rash: document.getElementById('rash').value,
+				shortBreathing: document.getElementById('breathing').value,
+				chestPain: document.getElementById('chest_pain').value,
+				diffMove: document.getElementById('movement').value,
+
+			})
+
+		})
+		.then(response => response.json())
+		this.setState({ 
+	    	showModal: false,
+	    });
+	    document.getElementById('symptomTable').style.display = "none";
+		document.getElementById('symptomTable2').style.display = "none";
+		document.getElementById('closeView').style.display = "none";
+		document.getElementById('editSymp').style.display = "none";
+
+	}
 
 
 	render(){
 		return(
 			<div>
 				<ul class="nav">
-				  <li class="navUser"><a class="active" href="/UserPage">UserPage</a></li>
+				  <li class="navUser"><a class="active">UserPage</a></li>
 				  <li class="userLog"><a href="/">log-off</a></li>
 				</ul>
 				
 				<div class="page_body">
-					<h1>Check if you have COVID</h1>
-					<button onClick={this.handleOpenModal}>Open Form</button>
+					<h1>Hi {this.state.name}</h1>
+					<h2> see your symptom </h2>
+					<button onClick={this.onGetSymptoms}> view symptom </button>
+					
+					<table id='symptomTable'>
+						<tr>
+							<th>Fever</th>
+							<th>Cough</th>
+							<th>Tiredness</th>
+							<th>Sore throat</th>
+							<th>Diarrhoea</th>
+							<th>Aches</th>
+							<th>Conjunctivitis</th>
+						</tr>
+						<tr>
+							<td>{this.state.userSymptom.fever}</td>
+							<td>{this.state.userSymptom.cough}</td>
+							<td>{this.state.userSymptom.tired}</td>
+							<td>{this.state.userSymptom.sore}</td>
+							<td>{this.state.userSymptom.diarrhoea}</td>
+							<td>{this.state.userSymptom.aches}</td>
+							<td>{this.state.userSymptom.pink_eye}</td>
+						</tr>
+					</table>
+					<table id='symptomTable2'>
+						<tr>
+							<th>Headache</th>
+							<th>Loss of taste</th>
+							<th>Loss of smell</th>
+							<th>Rash</th>
+							<th>Difficult breathing</th>
+							<th>Chest pain</th>
+							<th>Loss of speech or movement</th>
+						</tr>
+						<tr>
+							<td>{this.state.userSymptom.headache}</td>
+							<td>{this.state.userSymptom.no_taste}</td>
+							<td>{this.state.userSymptom.no_smell}</td>
+							<td>{this.state.userSymptom.rash}</td>
+							<td>{this.state.userSymptom.breathing}</td>
+							<td>{this.state.userSymptom.chest_pain}</td>
+							<td>{this.state.userSymptom.movement}</td>
+						</tr>
+					</table>
+					<button onClick={this.closeView} id='closeView'> close view </button>
+					<button onClick={this.handleOpenModal} id='editSymp'> edit symptom </button>
+					
+
 					
 			        <ReactModal 
 			        	isOpen={this.state.showModal}
@@ -106,108 +227,111 @@ class UserPage extends React.Component {
 			        	className = "Modal"	
 			        >
 			        	<button class="close_form" onClick={this.handleCloseModal}>Cancel</button>
-			        	<button class="check_per" onClick={this.SeePercent}>Check</button>
+			        	<button class="edit_symptom" onClick={this.editSymp}>Done</button>
+
 			   
-			        	<div class="input_label" onChange={this.handleChange}>
-				          	<h3>Do you have a fever</h3>
-							<input class="input_yes" type="radio" id="fever_yes" name="fever" value="2"/>
-							<label for="fever_yes">Yes</label>
-							<input class="input_no" type="radio" id="fever_no" name="fever" value="0"/>
-							<label for="fever_no">No</label><br/>
+			        	<div class="input_label">
+				          	<label for='fever'> Do you have a fever: </label>
+				          	<select name="fever" id="fever">
+				          		<option value="no">No</option>
+				          		<option value="yes">Yes</option>	
+				          	</select>
 						</div>
-						<div class="input_label" onChange={this.handleChange}>
-							<h3>Do you have a dry cough</h3>
-							<input class="input_yes" type="radio" id="cough_yes" name="cough" value="2"/>
-							<label for="cough_yes">Yes</label>
-							<input class="input_no" type="radio" id="cough_no" name="cough" value="0"/>
-							<label for="cough_no">No</label><br/>
+						<div class="input_label">
+				          	<label for='cough'> Do you have a dry cough: </label>
+				          	<select name="cough" id="cough">
+				          		<option value="no">No</option>
+				          		<option value="yes">Yes</option>
+				          	</select>
 						</div>
-						<div class="input_label" onChange={this.handleChange}>
-							<h3>Do you feel tired all the time</h3>
-							<input class="input_yes" type="radio" id="tired_yes" name="tired" value="2"/>
-							<label for="tired_yes">Yes</label>
-							<input class="input_no" type="radio" id="tired_no" name="tired" value="0"/>
-							<label for="tired_no">No</label><br/>
+						<div class="input_label">
+				          	<label for='tired'> Do you feel tired all the time: </label>
+				          	<select name="tired" id="tired">
+				          		<option value="no">No</option>
+				          		<option value="yes">Yes</option>
+				          	</select>
 						</div>
-						<div class="input_label" onChange={this.handleChange}>
-							<h3>Do you have sore throat</h3>
-							<input class="input_yes" type="radio" id="sore_yes" name="sore" value="1"/>
-							<label for="sore_yes">Yes</label>
-							<input class="input_no" type="radio" id="sore_no" name="sore" value="0"/>
-							<label for="sore_no">No</label><br/>
+						<div class="input_label">
+				          	<label for='sore'>Do you have sore throat: </label>
+				          	<select name="sore" id="sore">
+				          		<option value="no">No</option>
+				          		<option value="yes">Yes</option>				          		
+				          	</select>
 						</div>
-						<div class="input_label" onChange={this.handleChange}>
-							<h3>Do you have diarrhoea</h3>
-							<input class="input_yes" type="radio" id="diarrhoea_yes" name="diarrhoea" value="1"/>
-							<label for="diarrhoea_yes">Yes</label>
-							<input class="input_no" type="radio" id="diarrhoea_no" name="diarrhoea" value="0"/>
-							<label for="diarrhoea_no">No</label><br/><br/>
+						<div class="input_label">
+				          	<label for='diarrhoea'>Do you have diarrhoea: </label>
+				          	<select name="diarrhoea" id="diarrhoea">
+				          		<option value="no">No</option>
+				          		<option value="yes">Yes</option>				          		
+				          	</select>
 						</div>
-						<div class="input_label" onChange={this.handleChange}>
-							<h3>Do you have aches and pain</h3>
-							<input class="input_yes" type="radio" id="aches_yes" name="aches" value="1"/>
-							<label for="aches_yes">Yes</label>
-							<input class="input_no" type="radio" id="aches_no" name="aches" value="0"/>
-							<label for="aches_no">No</label><br/><br/>
+						<div class="input_label">
+				          	<label for='aches'>Do you have aches and pain: </label>
+				          	<select name="aches" id="aches">
+				          		<option value="no">No</option>
+				          		<option value="yes">Yes</option>				          		
+				          	</select>
 						</div>
-						<div class="input_label" onChange={this.handleChange}>
-							<h3>Do you have conjunctivitis (pink_eye)</h3>
-							<input class="input_yes" type="radio" id="pink_eye_yes" name="pink_eye" value="1"/>
-							<label for="pink_eye_yes">Yes</label>
-							<input class="input_no" type="radio" id="pink_eye_no" name="pink_eye" value="0"/>
-							<label for="pink_eye_no">No</label><br/><br/>
+						<div class="input_label">
+				          	<label for='pink_eye'>Do you have conjunctivitis (pink_eye): </label>
+				          	<select name="pink_eye" id="pink_eye">
+				          		<option value="no">No</option>
+				          		<option value="yes">Yes</option>     		
+				          	</select>
 						</div>
-						<div class="input_label" onChange={this.handleChange}>
-							<h3>Do you have headache</h3>
-							<input class="input_yes" type="radio" id="headache_yes" name="headache" value="1"/>
-							<label for="headache_yes">Yes</label>
-							<input class="input_no" type="radio" id="headache_no" name="headache" value="0"/>
-							<label for="headache_no">No</label><br/><br/>
+						<div class="input_label">
+				          	<label for='headache'>Do you have headache: </label>
+				          	<select name="headache" id="headache">
+				          		<option value="no">No</option>
+				          		<option value="yes">Yes</option>     		
+				          	</select>
 						</div>
-						<div class="input_label" onChange={this.handleChange}>
-							<h3>Do you have loss of taste</h3>
-							<input class="input_yes" type="radio" id="no_taste_yes" name="no_taste" value="1"/>
-							<label for="no_taste_yes">Yes</label>
-							<input class="input_no" type="radio" id="no_taste_no" name="no_taste" value="0"/>
-							<label for="no_taste_no">No</label><br/><br/>
+						<div class="input_label">
+				          	<label for='no_taste'>Do you have loss of taste: </label>
+				          	<select name="no_taste" id="no_taste">
+				          		<option value="no">No</option>
+				          		<option value="yes">Yes</option>     		
+				          	</select>
 						</div>
-						<div class="input_label" onChange={this.handleChange}>
-							<h3>Do you have loss of smell</h3>
-							<input class="input_yes" type="radio" id="no_smell_yes" name="no_smell" value="1"/>
-							<label for="no_smell_yes">Yes</label>
-							<input class="input_no" type="radio" id="no_smell_no" name="no_smell" value="0"/>
-							<label for="no_smell_no">No</label><br/><br/>
+						<div class="input_label">
+				          	<label for='no_smell'>Do you have loss of smell: </label>
+				          	<select name="no_smell" id="no_smell">
+				          		<option value="no">No</option>
+				          		<option value="yes">Yes</option>     		
+				          	</select>
 						</div>
-						<div class="input_label" onChange={this.handleChange}>
-							<h3>Do you have a rash on skin, or discolouration of fingers or toes</h3>
-							<input class="input_yes" type="radio" id="rash_yes" name="rash" value="1"/>
-							<label for="rash_yes">Yes</label>
-							<input class="input_no" type="radio" id="no_smell_no" name="rash" value="0"/>
-							<label for="rash_no">No</label><br/><br/>
+						<div class="input_label">
+				          	<label for='rash'>Do you have a rash on skin: </label>
+				          	<select name="rash" id="rash">
+				          		<option value="no">No</option>
+				          		<option value="yes">Yes</option>     		
+				          	</select>
 						</div>
-						<div class="input_label" onChange={this.handleChange}>
-							<h3>Do you have a difficulty in breathing or shortness of breath</h3>
-							<input class="input_yes" type="radio" id="breathing_yes" name="breathing" value="3"/>
-							<label for="breathing_yes">Yes</label>
-							<input class="input_no" type="radio" id="breathing_no" name="breathing" value="0"/>
-							<label for="breathing_no">No</label><br/><br/>
+						<div class="input_label">
+				          	<label for='breathing'>Do you have a difficulty in breathing or shortness of breath: </label>
+				          	<select name="breathing" id="breathing">
+				          		<option value="no">No</option>
+				          		<option value="yes">Yes</option>     		
+				          	</select>
 						</div>
-						<div class="input_label" onChange={this.handleChange}>
-							<h3>Do you have a chest pain or pressure</h3>
-							<input class="input_yes" type="radio" id="chest_pain_yes" name="chest_pain" value="3"/>
-							<label for="chest_pain_yes">Yes</label>
-							<input class="input_no" type="radio" id="breathing_no" name="chest_pain" value="0"/>
-							<label for="chest_pain_no">No</label><br/><br/>
+						<div class="input_label">
+				          	<label for='chest_pain'>Do you have a chest pain or pressure: </label>
+				          	<select name="chest_pain" id="chest_pain">
+				          		<option value="no">No</option>
+				          		<option value="yes">Yes</option>     		
+				          	</select>
 						</div>
-						<div class="input_label" onChange={this.handleChange}>
-							<h3>Do you have a loss of speech or movement</h3>
-							<input class="input_yes" type="radio" id="movement_yes" name="movement" value="3"/>
-							<label for="movement_yes">Yes</label>
-							<input class="input_no" type="radio" id="movement_no" name="movement" value="0"/>
-							<label for="movement_no">No</label><br/><br/>
+						<div class="input_label">
+				          	<label for='movement'>Do you have a loss of speech or movement: </label>
+				          	<select name="movement" id="movement">
+				          		<option value="no">No</option>
+				          		<option value="yes">Yes</option>     		
+				          	</select>
 						</div>
+
+
 					
-						<h2 class="show_per">The percentage of you having COVID-19 is {this.state.total}</h2>
+	
 					
 
 			        </ReactModal>

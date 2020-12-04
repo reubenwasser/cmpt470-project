@@ -78,7 +78,7 @@ class App extends Component {
             <Route exact 
               path="/UserPage" 
               render={(props) => (
-                <UserPage {...props}
+                <UserPage {...props} userInfo={this.state.user}
                 />
               )}
             />
