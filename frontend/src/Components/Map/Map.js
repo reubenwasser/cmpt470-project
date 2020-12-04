@@ -1,129 +1,49 @@
-import React from 'react';
-import {
-  GoogleMap,
-  useLoadScript,
-  Marker,
-  InfoWindow,
-} from '@react-google-maps/api';
-import _ from 'lodash';
+import React from "react";
+import { MapContainer } from "react-leaflet";
+import EsriLeafletGeoSearch from "react-esri-leaflet/plugins/EsriLeafletGeoSearch";
 
-import mapStyles from './mapStyles';
 import './Map.css';
+import Layers from './Layers/Layers.js'
+import Legend from './Legend/Legend'
 
-import Search from './Search/Search';
-import Establishment from './Establishment/Establishment';
-import Locate from './Locate/Locate';
 
-// Additional libraries that we want to use along with the Google Maps API
-// These libraries must also be enabled within the google cloud project
-const libraries = ['places'];
-
-// Set the width and height of the map on the page
-const mapContainerStyle = {
-  width: '100vw',
-  height: '95vh',
-};
-
-const defaultZoom = 8;
-
-// Set to vancouver
-const center = {
-  lat: 49.28273,
-  lng: -123.120735,
-};
-
-const options = {
-  styles: mapStyles,
-  disableDefaultUI: true,
-  zoomControl: true,
-};
-
-export default function Map() {
-  const mapRef = React.useRef();
-  const [marker, setMarker] = React.useState(null);
-  const [selected, setSelected] = React.useState(null);
-
-  const onMapLoad = React.useCallback((map) => {
-    mapRef.current = map;
-  }, []);
-
-  const panTo = React.useCallback(({ lat, lng }) => {
-    mapRef.current.panTo({ lat, lng });
-    mapRef.current.setZoom(16);
-  }, []);
-
-  const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY || process.env.GOOGLE_MAPS_API_KEY,
-    libraries,
-  });
-
-  // Add markers to the map based on the search results
-  const handleMarkers = ({
-    lat,
-    lng,
-    name,
-    types,
-    url,
-    formatted_address,
-    open_now,
-  }) => {
-    setMarker({
-      lat: lat,
-      lng: lng,
-      name: name,
-      type: types[0],
-      url: url,
-      formatted_address: formatted_address,
-      open_now: open_now,
-    });
+class Map extends React.Component {
+//Vancouver coordinates
+  state = {
+    lat: 49.28273,
+    long: -123.120735,
+    zoom: 7
   };
 
-  const handleCloseClick = () => {
-    setSelected(null);
-  };
-
-  if (loadError) return 'Error Loading Map';
-  if (!isLoaded) return 'Loading Map';
-
-  return (
-    <div>
-				<ul class="nav">
-				  <li class="navHome"><a href="/">Home</a></li>
-				  <li class="navStat"><a href="Stats">Stats</a></li>
-          <li class="navMap"><a class="active" href="Map">Map</a></li>
-				  <li class="navReg"><a href="Register" on>Register</a></li>
-				  <li class="navSign"><a href="SignIn">Sign-in</a></li>
-				</ul>
-      <Search panTo={panTo} handleMarkers={handleMarkers} />
-      <Locate panTo={panTo} />
-      <GoogleMap
-        mapContainerStyle={mapContainerStyle}
-        zoom={defaultZoom}
-        center={center}
-        options={options}
-        onLoad={onMapLoad}
-      >
-        {/* MARKER */}
-        {!_.isEmpty(marker) && (
-          <Marker
-            key={`${marker.lat}-${marker.lng}`}
-            position={{ lat: marker.lat, lng: marker.lng }}
-            onClick={() => {
-              setSelected(marker);
-            }}
-          />
-        )}
-
-        {/* INFO WINDOW */}
-        {selected ? (
-          <InfoWindow
-            position={{ lat: selected.lat, lng: selected.lng }}
-            onCloseClick={handleCloseClick}
-          >
-            <Establishment selected={selected} />
-          </InfoWindow>
-        ) : null}
-      </GoogleMap>
-    </div>
-  );
+  render() {
+    const position = [this.state.lat, this.state.long];
+    return (
+      <div>
+        <div className="header">
+          <ul className="nav">
+            <li className="navHome"><a href="/">Home</a></li>
+            <li className="navStat"><a href="Stats">Stats</a></li>
+            <li className="navMap"><a class="active" href="Map">Map</a></li>
+            <li className="navReg"><a href="Register" on>Register</a></li>
+            <li className="navSign"><a href="SignIn">Sign-in</a></li>
+          </ul>
+        </div>
+        <div className="map">
+          <MapContainer center={position} zoom={this.state.zoom} scrollWheelZoom={true} maxZoom={20}>
+            <EsriLeafletGeoSearch 
+            eventHandlers={{
+              requeststart: () => console.log('Started request...'),
+              requestend: () => console.log('Ended request...'),
+              results: (r) => console.log(r)
+            }}/>
+              <Layers />
+              {/* Legend actin wierd */}
+              {/* <Legend /> */}
+          </MapContainer>
+        </div>
+      </div>
+    );
+  }
 }
+
+export default Map;
