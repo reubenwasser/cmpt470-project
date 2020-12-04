@@ -25,9 +25,23 @@ class UserPage extends React.Component {
 		    chest_pain: "",
 		    movement: "",
 	      },
+	      prob: 0,
+	      fever: 0,
+		  cough: 0,
+		  tired: 0,
+		  sore: 0,
+		  diarrhoea:0,
+		  aches: 0,
+		  pink_eye: 0,
+		  headache: 0,
+		  no_taste: 0,
+		  no_smell: 0,
+		  rash: 0,
+		  breathing: 0,
+		  chest_pain: 0,
+		  movement:0,
 
 	    };
-	    /*this.handleChange = this.handleChange.bind(this);*/
 	    this.handleOpenModal = this.handleOpenModal.bind(this);
     	this.handleCloseModal = this.handleCloseModal.bind(this);
 	}
@@ -51,41 +65,93 @@ class UserPage extends React.Component {
 			    movement: data.diffmove,
 			}
 		})
+		if (data.fever === 'yes')
+		{
+			this.setState({
+				fever: 2
+			})
+		}
+		if (data.cough === 'yes')
+		{
+			this.setState({
+				cough: 2
+			})
+		}
+		if (data.tired === 'yes')
+		{
+			this.setState({
+				tired: 2
+			})
+		}
+		if (data.sorethroat === 'yes')
+		{
+			this.setState({
+				sore: 1
+			})
+		}
+		if (data.diarrhoea === 'yes')
+		{
+			this.setState({
+				diarrhoea: 1
+			})
+		}
+		if (data.aches === 'yes')
+		{
+			this.setState({
+				aches: 1
+			})
+		}
+		if (data.pinkeye === 'yes')
+		{
+			this.setState({
+				pink_eye: 1
+			})
+		}
+		if (data.headache === 'yes')
+		{
+			this.setState({
+				headache: 1
+			})
+		}
+		if (data.notaste === 'yes')
+		{
+			this.setState({
+				no_taste: 1
+			})
+		}
+		if (data.nosmell === 'yes')
+		{
+			this.setState({
+				no_smell: 1
+			})
+		}
+		if (data.rash === 'yes')
+		{
+			this.setState({
+				rash: 1
+			})
+		}
+		if (data.shortbreathing === 'yes')
+		{
+			this.setState({
+				breathing: 3
+			})
+		}
+		if (data.chestpain === 'yes')
+		{
+			this.setState({
+				chest_pain: 3
+			})
+		}
+		if (data.diffmove === 'yes')
+		{
+			this.setState({
+				movement: 3
+			})
+		}
 	}
 
 
-	
-  	handleChange = (e) => {
-	    this.setState({
-	      userSymptom: {
-	      	[e.target.name]: e.target.value
-	      }
-	    })
-	}
-
-	
-
-	/*SeePercent = (e) => {
-		this.setState({
-			total:  parseInt(this.state.fever) + 
-					parseInt(this.state.cough) +
-					parseInt(this.state.tired) + 
-					parseInt(this.state.sore) +
-					parseInt(this.state.diarrhoea) + 
-					parseInt(this.state.aches) +
-					parseInt(this.state.pink_eye) +
-					parseInt(this.state.headache) +
-					parseInt(this.state.no_taste) +
-					parseInt(this.state.no_smell) +
-					parseInt(this.state.rash) +
-					parseInt(this.state.breathing) +
-					parseInt(this.state.chest_pain) +
-					parseInt(this.state.movement)
-
-		}, function () {
-			this.setState({total: (parseInt(this.state.total)/23)*100})	
-		})	
-	}*/
 
 
   
@@ -118,13 +184,33 @@ class UserPage extends React.Component {
 		document.getElementById('symptomTable2').style.display = "table";
 		document.getElementById('closeView').style.display = "inline-block";
 		document.getElementById('editSymp').style.display = "inline-block";
+		document.getElementById('calPer').style.display = "inline-block";
 	}
 	
-	closeView () {
+	closeView = () => {
 		document.getElementById('symptomTable').style.display = "none";
 		document.getElementById('symptomTable2').style.display = "none";
 		document.getElementById('closeView').style.display = "none";
 		document.getElementById('editSymp').style.display = "none";
+		document.getElementById('calPer').style.display = "none";
+		document.getElementById('seeProb').style.display = "none";
+		this.setState({
+			prob: 0,
+	    	fever: 0,
+		  	cough: 0,
+		  	tired: 0,
+		  	sore: 0,
+			diarrhoea:0,
+			aches: 0,
+			pink_eye: 0,
+			headache: 0,
+			no_taste: 0,
+			no_smell: 0,
+			rash: 0,
+			breathing: 0,
+			chest_pain: 0,
+			movement:0,
+		})
 
 	}
 	editSymp = () => {
@@ -154,11 +240,36 @@ class UserPage extends React.Component {
 		.then(response => response.json())
 		this.setState({ 
 	    	showModal: false,
+	    	prob: 0,
+	    	fever: 0,
+		  	cough: 0,
+		  	tired: 0,
+		  	sore: 0,
+			diarrhoea:0,
+			aches: 0,
+			pink_eye: 0,
+			headache: 0,
+			no_taste: 0,
+			no_smell: 0,
+			rash: 0,
+			breathing: 0,
+			chest_pain: 0,
+			movement:0,
 	    });
 	    document.getElementById('symptomTable').style.display = "none";
 		document.getElementById('symptomTable2').style.display = "none";
 		document.getElementById('closeView').style.display = "none";
 		document.getElementById('editSymp').style.display = "none";
+		document.getElementById('calPer').style.display = "none";
+		document.getElementById('seeProb').style.display = "none";
+
+	}
+	calProb = () => {
+		document.getElementById('seeProb').style.display = "block";
+		
+		this.setState({
+			prob: (((this.state.fever + this.state.cough + this.state.tired + this.state.sore + this.state.diarrhoea + this.state.aches + this.state.pink_eye + this.state.headache + this.state.no_taste + this.state.no_smell + this.state.rash + this.state.breathing + this.state.chest_pain + this.state.movement)/23)*100).toFixed(2)
+		})
 
 	}
 
@@ -218,7 +329,9 @@ class UserPage extends React.Component {
 					</table>
 					<button onClick={this.closeView} id='closeView'> close view </button>
 					<button onClick={this.handleOpenModal} id='editSymp'> edit symptom </button>
-					
+					<button id='calPer' onClick={this.calProb}>Calculate the probability of you having CODIV-19</button>
+					<p id='seeProb'>The probability of you having COVID-19 is {this.state.prob} </p>
+
 
 					
 			        <ReactModal 
@@ -233,6 +346,7 @@ class UserPage extends React.Component {
 			        	<div class="input_label">
 				          	<label for='fever'> Do you have a fever: </label>
 				          	<select name="fever" id="fever">
+				          		<option value={this.state.userSymptom.fever}>{this.state.userSymptom.fever}</option>
 				          		<option value="no">No</option>
 				          		<option value="yes">Yes</option>	
 				          	</select>
@@ -240,6 +354,7 @@ class UserPage extends React.Component {
 						<div class="input_label">
 				          	<label for='cough'> Do you have a dry cough: </label>
 				          	<select name="cough" id="cough">
+				          		<option value={this.state.userSymptom.cough}>{this.state.userSymptom.cough}</option>
 				          		<option value="no">No</option>
 				          		<option value="yes">Yes</option>
 				          	</select>
@@ -247,6 +362,7 @@ class UserPage extends React.Component {
 						<div class="input_label">
 				          	<label for='tired'> Do you feel tired all the time: </label>
 				          	<select name="tired" id="tired">
+				          		<option value={this.state.userSymptom.tired}>{this.state.userSymptom.tired}</option>
 				          		<option value="no">No</option>
 				          		<option value="yes">Yes</option>
 				          	</select>
@@ -254,6 +370,7 @@ class UserPage extends React.Component {
 						<div class="input_label">
 				          	<label for='sore'>Do you have sore throat: </label>
 				          	<select name="sore" id="sore">
+				          		<option value={this.state.userSymptom.sore}>{this.state.userSymptom.sore}</option>
 				          		<option value="no">No</option>
 				          		<option value="yes">Yes</option>				          		
 				          	</select>
@@ -261,6 +378,7 @@ class UserPage extends React.Component {
 						<div class="input_label">
 				          	<label for='diarrhoea'>Do you have diarrhoea: </label>
 				          	<select name="diarrhoea" id="diarrhoea">
+				          		<option value={this.state.userSymptom.diarrhoea}>{this.state.userSymptom.diarrhoea}</option>
 				          		<option value="no">No</option>
 				          		<option value="yes">Yes</option>				          		
 				          	</select>
@@ -268,6 +386,7 @@ class UserPage extends React.Component {
 						<div class="input_label">
 				          	<label for='aches'>Do you have aches and pain: </label>
 				          	<select name="aches" id="aches">
+				          		<option value={this.state.userSymptom.aches}>{this.state.userSymptom.aches}</option>
 				          		<option value="no">No</option>
 				          		<option value="yes">Yes</option>				          		
 				          	</select>
@@ -275,6 +394,7 @@ class UserPage extends React.Component {
 						<div class="input_label">
 				          	<label for='pink_eye'>Do you have conjunctivitis (pink_eye): </label>
 				          	<select name="pink_eye" id="pink_eye">
+				          		<option value={this.state.userSymptom.pink_eye}>{this.state.userSymptom.pink_eye}</option>
 				          		<option value="no">No</option>
 				          		<option value="yes">Yes</option>     		
 				          	</select>
@@ -282,6 +402,7 @@ class UserPage extends React.Component {
 						<div class="input_label">
 				          	<label for='headache'>Do you have headache: </label>
 				          	<select name="headache" id="headache">
+				          		<option value={this.state.userSymptom.headache}>{this.state.userSymptom.headache}</option>
 				          		<option value="no">No</option>
 				          		<option value="yes">Yes</option>     		
 				          	</select>
@@ -289,6 +410,7 @@ class UserPage extends React.Component {
 						<div class="input_label">
 				          	<label for='no_taste'>Do you have loss of taste: </label>
 				          	<select name="no_taste" id="no_taste">
+				          		<option value={this.state.userSymptom.no_taste}>{this.state.userSymptom.no_taste}</option>
 				          		<option value="no">No</option>
 				          		<option value="yes">Yes</option>     		
 				          	</select>
@@ -296,6 +418,7 @@ class UserPage extends React.Component {
 						<div class="input_label">
 				          	<label for='no_smell'>Do you have loss of smell: </label>
 				          	<select name="no_smell" id="no_smell">
+				          		<option value={this.state.userSymptom.no_smell}>{this.state.userSymptom.no_smell}</option>
 				          		<option value="no">No</option>
 				          		<option value="yes">Yes</option>     		
 				          	</select>
@@ -303,6 +426,7 @@ class UserPage extends React.Component {
 						<div class="input_label">
 				          	<label for='rash'>Do you have a rash on skin: </label>
 				          	<select name="rash" id="rash">
+				          		<option value={this.state.userSymptom.rash}>{this.state.userSymptom.rash}</option>
 				          		<option value="no">No</option>
 				          		<option value="yes">Yes</option>     		
 				          	</select>
@@ -310,6 +434,7 @@ class UserPage extends React.Component {
 						<div class="input_label">
 				          	<label for='breathing'>Do you have a difficulty in breathing or shortness of breath: </label>
 				          	<select name="breathing" id="breathing">
+				          		<option value={this.state.userSymptom.breathing}>{this.state.userSymptom.breathing}</option>
 				          		<option value="no">No</option>
 				          		<option value="yes">Yes</option>     		
 				          	</select>
@@ -317,6 +442,7 @@ class UserPage extends React.Component {
 						<div class="input_label">
 				          	<label for='chest_pain'>Do you have a chest pain or pressure: </label>
 				          	<select name="chest_pain" id="chest_pain">
+				          		<option value={this.state.userSymptom.chest_pain}>{this.state.userSymptom.chest_pain}</option>
 				          		<option value="no">No</option>
 				          		<option value="yes">Yes</option>     		
 				          	</select>
@@ -324,15 +450,12 @@ class UserPage extends React.Component {
 						<div class="input_label">
 				          	<label for='movement'>Do you have a loss of speech or movement: </label>
 				          	<select name="movement" id="movement">
+				          		<option value={this.state.userSymptom.movement}>{this.state.userSymptom.movement}</option>
 				          		<option value="no">No</option>
 				          		<option value="yes">Yes</option>     		
 				          	</select>
 						</div>
 
-
-					
-	
-					
 
 			        </ReactModal>
 

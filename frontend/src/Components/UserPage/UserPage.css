@@ -94,6 +94,14 @@ li a:hover:not(.active) {
   margin-left: 10px;
   display: none;
 }
+#calPer {
+  margin-top: 10px;
+  margin-left: 10px;
+  display: none;
+}
+#seeProb {
+  display: none;
+}
 .editSymptomForm {
   height: 500px;
 }
