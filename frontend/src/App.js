@@ -4,6 +4,7 @@ import UnauthMain from './Components/UnauthMain/UnauthMain'
 import Register from './Components/Register/Register'
 import UserPage from './Components/UserPage/UserPage'
 import SignIn from './Components/SignIn/SignIn'
+import TestingSite from './Components/TestingSite/TestingSite'
 import Map from './Components/Map/Map';
 import Stats from './Components/Stats/Stats'
 
@@ -52,6 +53,11 @@ class App extends Component {
               <Route exact path='/Register' 
                 render= {(props) => (
                   <Register {...props} UserInfo={this.UserInfo}/>
+                )}
+              />
+              <Route exact path='/TestingSite' 
+                render= {(props) => (
+                  <TestingSite {...props} city={this.state.user.city}/>
                 )}
               />
 
