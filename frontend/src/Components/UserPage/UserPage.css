@@ -47,7 +47,10 @@ li a:hover:not(.active) {
   background-color: papayawhip;
 }
 .input_label {
-  text-align: center;
+  margin-top: 30px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+  text-align: left;
   
 }
 .input_yes {
@@ -61,10 +64,36 @@ li a:hover:not(.active) {
   text-align: center;
   position:fixed;
 }
-.check_per {
+.edit_symptom {
   position:fixed;
   margin-left:65px;
 }
 .show_per {
   margin-left:15px;
+}
+
+.page_body table {
+  margin-top: 20px;
+  width: 800px;
+  border:1px solid black;
+  border-collapse: collapse;
+  display: none;
+}
+.page_body td,th {
+  border:1px solid black;
+  border-collapse: collapse;
+  padding: 10px;
+  text-align: center;
+}
+#closeView {
+  margin-top: 10px;
+  display: none;
+}
+#editSymp {
+  margin-top: 10px;
+  margin-left: 10px;
+  display: none;
+}
+.editSymptomForm {
+  height: 500px;
 }
