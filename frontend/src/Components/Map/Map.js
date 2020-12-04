@@ -4,6 +4,8 @@ import EsriLeafletGeoSearch from "react-esri-leaflet/plugins/EsriLeafletGeoSearc
 
 import './Map.css';
 import Layers from './Layers/Layers.js'
+import Legend from './Legend/Legend'
+
 
 class Map extends React.Component {
 //Vancouver coordinates
@@ -35,6 +37,8 @@ class Map extends React.Component {
               results: (r) => console.log(r)
             }}/>
               <Layers />
+              {/* Legend actin wierd */}
+              {/* <Legend /> */}
           </MapContainer>
         </div>
       </div>

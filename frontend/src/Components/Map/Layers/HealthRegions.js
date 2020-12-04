@@ -1,7 +1,6 @@
 import React from 'react'
 import { GeoJSON } from 'react-leaflet'
 
-let mapRef;
 const COLOR_0 = "#4dac26";
 const COLOR_1 = "#b8e186";
 const COLOR_2 = "#ffeda0";
@@ -21,7 +20,6 @@ function getColor(d) {
 }
 
 function style(feature) {
-  console.log(feature.properties.CurrentCaseCount)
   return {
     fillColor: getColor(feature.properties.CurrentCaseCount),
     weight: 1,
@@ -31,10 +29,6 @@ function style(feature) {
     fillOpacity: 0.8
   };
 }
-
-// function zoomToFeature(e) {
-//   mapRef.fitBounds(e.target.getBounds());
-// }
 
 export default class HealthRegions extends React.Component {
   constructor(props) {

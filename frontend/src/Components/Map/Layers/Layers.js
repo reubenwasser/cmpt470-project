@@ -1,5 +1,5 @@
 import React from 'react';
-import { Marker, Popup, TileLayer, LayersControl, FeatureGroup, useMap, useMapEvent } from "react-leaflet";
+import { TileLayer, LayersControl, FeatureGroup, useMap, useMapEvent } from "react-leaflet";
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 
 
@@ -9,7 +9,6 @@ import AttractionOverlay from '../Attractions/AttractionOverlay'
 
 
 export default function Layers() {
-    const center = [51.505, -0.09];
     const [attractionSearch, setAttractionSearch] = React.useState([]);
     const [mapBounds, setMapBounds] = React.useState(useMap().getBounds());
 
