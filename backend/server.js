@@ -3,12 +3,27 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const bcrypt = require('bcrypt-nodejs');
 const { Pool } = require('pg');
+const mysql = require('mysql');
 
 const pool = new Pool({
   user: process.env.DB_USER || 'postgres',
   host: process.env.DB_ADDRESS || '34.94.244.15',
   database: process.env.DB_NAME || 'postgres',
   password: process.env.DB_PASSWORD || 'root',
+});
+
+const con = mysql.createConnection({
+  host: "104.198.147.79",
+  user: "root",
+  password: "Bolshevik35+",
+  database: "cmpt470"
+});
+
+con.connect(function(err) {
+  if (err) {
+    return console.error('error: ' + err.message);
+  }
+  // console.log("Connected!");
 });
 
 const app = express();
@@ -71,6 +86,18 @@ app.post('/register', (req, res) => {
       // console.log(results.rows.length);
       res.json(results.rows[0]);
     }
+  });
+});
+
+app.post('/testing', (req, res) => {
+  const {city} = req.body;
+  const query = "SELECT Name, Website, Street, City, Province, PostalCode, Phone FROM Testing_Sites WHERE City = ?";
+  const value = [[city]];
+  con.query(query,[value], function (err, result) {
+      if (err){
+        return console.error('error: ' + err.message);
+      }
+      res.status(200).json(result);
   });
 });
 
