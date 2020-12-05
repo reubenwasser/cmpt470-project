@@ -7,13 +7,13 @@ const ListSite = ({list}) => {
 				<table>
 					<tr>
 						<td>{`${index+1}`}</td>
-						<td>{`${list[index].Name}`}</td>
-						<td><a href={`${list[index].Website}`}>Link</a></td>
-						<td>{`${list[index].Phone}`}</td>
-						<td>{`${list[index].Street}`}</td>
-						<td>{`${list[index].City}`}</td>
-						<td>{`${list[index].Province}`}</td>
-						<td>{`${list[index].PostalCode}`}</td>
+						<td>{`${list[index].name}`}</td>
+						<td><a href={`${list[index].website}`}>Link</a></td>
+						<td>{`${list[index].phone}`}</td>
+						<td>{`${list[index].street}`}</td>
+						<td>{`${list[index].city}`}</td>
+						<td>{`${list[index].province}`}</td>
+						<td>{`${list[index].zipcode}`}</td>
 					</tr>
 				</table>)
 			}

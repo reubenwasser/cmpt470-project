@@ -7,6 +7,7 @@ class TestingSite extends Component {
 		super(props);
 		this.state = {
 			city: '',
+			noresult: false,
 			list: []
 		}
 	}
@@ -25,13 +26,19 @@ class TestingSite extends Component {
 		})
 		.then(response => response.json())
 		.then(data => {
-			console.log(data);
-			this.setState({list: data});
+			// console.log(data);
+			if (data === 'No result'){
+				this.setState({noresult: true})
+			}
+			else{
+				this.setState({noresult: false})
+				this.setState({list: data});
+			}
 		})
 	}
 
 	render(){
-		const {list} = this.state;
+		const {list, noresult} = this.state;
 		return(
 			<div>
 				<ul class="nav">
@@ -53,7 +60,12 @@ class TestingSite extends Component {
 						</button>
 					</div>
 				</div>
-				<ListSite list={list}/>
+	            {noresult ?
+		      		<p class="signWrong">No result found</p>
+		      		:
+		      		<ListSite list={list}/>
+		      	}
+				
 			</div>
 		)
 	}
