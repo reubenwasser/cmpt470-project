@@ -70,7 +70,7 @@ app.post('/register', (req, res) => {
     } else {
       // console.log(results.rows.length);
       const query2 = {
-        text: 'INSERT INTO sympton(email) VALUES ($1)',
+        text: 'INSERT INTO symptom(email) VALUES ($1)',
         values: [email]
       }
       pool.query(query2,(err,results2) => {
@@ -86,7 +86,7 @@ app.post('/showSymptom', (req,res) => {
   
   const {email} = req.body;
   const query = {
-    text: 'SELECT * FROM sympton WHERE email = $1',
+    text: 'SELECT * FROM symptom WHERE email = $1',
     values: [email]
   };
 
@@ -103,7 +103,7 @@ app.post('/showSymptom', (req,res) => {
 app.post('/editSymptom', (req,res) => {
   const {email,fever,cough,tired,soreThroat,diarrhoea,aches,pinkEye,headache,noTaste,noSmell,rash,shortBreathing,chestPain,diffMove} = req.body;
   const query = {
-    text: 'UPDATE sympton SET fever=$2,cough=$3,tired=$4,sorethroat=$5,diarrhoea=$6,aches=$7,pinkeye=$8,headache=$9,notaste=$10,nosmell=$11,rash=$12,shortbreathing=$13,chestpain=$14,diffmove=$15 WHERE email=$1',
+    text: 'UPDATE symptom SET fever=$2,cough=$3,tired=$4,sorethroat=$5,diarrhoea=$6,aches=$7,pinkeye=$8,headache=$9,notaste=$10,nosmell=$11,rash=$12,shortbreathing=$13,chestpain=$14,diffmove=$15 WHERE email=$1',
     values: [email,fever,cough,tired,soreThroat,diarrhoea,aches,pinkEye,headache,noTaste,noSmell,rash,shortBreathing,chestPain,diffMove]
   };
   pool.query(query,(err,res) => {
