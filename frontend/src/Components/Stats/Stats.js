@@ -1,6 +1,9 @@
 import React from 'react'; 
-import "./Stats.css"
 import moment from 'moment'
+
+
+import NavigationBar from '../NavigationBar/NavigationBar';
+import "./Stats.css"
 import map from "./canada_map.png"
 
 
@@ -75,13 +78,8 @@ class Stats extends React.Component {
 	{
 		return(
 			<div>
-				<ul class="nav">
-				  <li class="navHome"><a href="/">Home</a></li>
-				  <li class="navStat"><a class="active" href="Stats">Stats</a></li>
-          <li class="navMap"><a href="Map">Map</a></li>
-				  <li class="navReg"><a href="Register" on>Register</a></li>
-				  <li class="navSign"><a href="SignIn">Sign-in</a></li>
-				</ul>
+        <NavigationBar active='Stats' isSignIn={true} />
+
 				<div class="statBody">
 					<h1 className="Text">Current Stats - Canada</h1>
 					<h3 className="Text1">Update @</h3>

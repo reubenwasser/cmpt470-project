@@ -1,0 +1,59 @@
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #4b4c54;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #4caf50;
+}
+.navReg {
+  width: 100px;
+  float: right;
+}
+.navSign {
+  width: 100px;
+  float: right;
+}
+
+.navHome {
+  width: 100px;
+  float: left;
+}
+.navStat {
+  width: 100px;
+}
+
+.navMap {
+  width: 100px;
+}
+
+.navTest {
+  width: 100px;
+}
+
+.navLogOff {
+  width: 100px;
+  float: right;
+}
+
+.navUser {
+  width: 175px;
+}

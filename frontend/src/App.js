@@ -47,7 +47,26 @@ class App extends Component {
      return (
       <BrowserRouter useEffect>
         <Switch>
-         {isSignIn === false?
+          <Route exact path='/' component={UnauthMain} />
+          <Route exact path='/Register'
+            render={(props) => ( <Register {...props} UserInfo={this.UserInfo} /> )}
+          />
+          <Route exact path='/SignIn'
+            render={(props) => ( <SignIn {...props} UserInfo={this.UserInfo} CorrectSignIn={this.CorrectSignIn} /> )}
+          />
+          <Route exact path='/UserPage'
+            render={(props) => ( <UserPage {...props} userInfo={this.state.user} /> )}
+          />
+          <Route exact path='/Stats'
+            render={(props) => ( <Stats {...props} /> )}
+          />
+          <Route exact path='/TestingSite'
+            render={(props) => ( <TestingSite {...props} city={this.state.user.city} /> )}
+          />
+          <Route exact path='/Map'
+            render={(props) => ( <Map {...props} /> )}
+          />
+         {/* {isSignIn === false?
             <div>
               <Route exact path="/" component={UnauthMain} />
               <Route exact path='/Register' 
@@ -87,7 +106,7 @@ class App extends Component {
                 />
               )}
             />
-          }
+          } */}
 
         </Switch>
       </BrowserRouter>

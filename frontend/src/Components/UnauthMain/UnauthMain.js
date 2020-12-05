@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
+
+import NavigationBar from '../NavigationBar/NavigationBar';
 import "./UnauthMain.css"
+
 
 class UnauthMain extends Component {
 	
 	render() {
 		return(
 			<div>
-				<ul class="nav">
-				  <li class="navHome"><a class="active" href="/">Home</a></li>
-				  <li class="navStat"><a href="Stats">Stats</a></li>
-          		  <li class="navMap"><a href="Map">Map</a></li>
-          		  <li class=""><a href="TestingSite">TestingSite</a></li>
-				  <li class="navReg"><a href="Register" on>Register</a></li>
-				  <li class="navSign"><a href="SignIn">Sign-in</a></li>
-				</ul>
+        <NavigationBar active='Home' isSignIn={false} />
+
 				<div class="bodyMain"> 
 			    	<h1>Did you know?</h1>
 			        <p><strong>Coronavirus disease (COVID-19)</strong> is an infectious 

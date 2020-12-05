@@ -1,6 +1,9 @@
 import React from 'react'; 
-import "./UserPage.css"
 import ReactModal from 'react-modal';
+
+import NavigationBar from '../NavigationBar/NavigationBar';
+import "./UserPage.css"
+
 
 class UserPage extends React.Component {
 	constructor(props) {
@@ -282,10 +285,7 @@ class UserPage extends React.Component {
 	render(){
 		return(
 			<div>
-				<ul class="nav">
-				  <li class="navUser"><a class="active">UserPage</a></li>
-				  <li class="userLog"><a href="/">log-off</a></li>
-				</ul>
+        <NavigationBar active='UserPage' isSignIn={true} />
 				
 				<div class="page_body">
 					<h1>Hi {this.state.name}</h1>

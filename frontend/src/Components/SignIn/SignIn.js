@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+
+import NavigationBar from '../NavigationBar/NavigationBar';
 import "./SignIn.css"
 
 class SignIn extends Component {
@@ -53,13 +55,7 @@ class SignIn extends Component {
 		return(
 			<div>
 
-				<ul class="nav">
-					<li class="navHome"><a href="/">Home</a></li>
-					<li class="navStat"><a href="Stats">Stats</a></li>
-         			<li class="navMap"><a href="Map">Map</a></li>
-					<li class="navReg"><a href="Register" on>Register</a></li>
-					<li class="navSign"><a class="active" href="SignIn">Sign-in</a></li>
-				</ul>
+        <NavigationBar active='SignIn' isSignIn={false} />
 
 				<div onKeyDown={this.onKeyPressedSignin}>
 			          <div class="addUserForm">
