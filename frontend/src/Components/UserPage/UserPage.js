@@ -151,9 +151,6 @@ class UserPage extends React.Component {
 		}
 	}
 
-
-
-
   
 	handleOpenModal () {
 		this.setState({ showModal: true });
@@ -187,7 +184,6 @@ class UserPage extends React.Component {
 		})
 		
 		document.getElementById('symptomTable').style.display = "table";
-		document.getElementById('symptomTable2').style.display = "table";
 		document.getElementById('closeView').style.display = "inline-block";
 		document.getElementById('editSymp').style.display = "inline-block";
 		document.getElementById('calPer').style.display = "inline-block";
@@ -195,7 +191,6 @@ class UserPage extends React.Component {
 	
 	closeView = () => {
 		document.getElementById('symptomTable').style.display = "none";
-		document.getElementById('symptomTable2').style.display = "none";
 		document.getElementById('closeView').style.display = "none";
 		document.getElementById('editSymp').style.display = "none";
 		document.getElementById('calPer').style.display = "none";
@@ -263,7 +258,6 @@ class UserPage extends React.Component {
 			movement:0,
 	    });
 	    document.getElementById('symptomTable').style.display = "none";
-		document.getElementById('symptomTable2').style.display = "none";
 		document.getElementById('closeView').style.display = "none";
 		document.getElementById('editSymp').style.display = "none";
 		document.getElementById('calPer').style.display = "none";
@@ -282,15 +276,16 @@ class UserPage extends React.Component {
 	render(){
 		return(
 			<div>
-				<ul class="nav">
-				  <li class="navUser"><a class="active">UserPage</a></li>
+				<ul class="navUP">
+				  <li class="navUser"><a class="active" >UserPage</a></li>
 				  <li class="userLog"><a href="/">log-off</a></li>
 				</ul>
 				
 				<div class="page_body">
-					<h1>Hi {this.state.name}</h1>
-					<h2> see your symptom </h2>
-					<button onClick={this.onGetSymptoms}> view symptom </button>
+					<h1>Hi {this.state.name}, </h1>
+					<h2>Welcome to Coronavirus (COVID-19) Self-Checker/Tracker. </h2>
+					<p class="text1"> To track or check your symptoms for COVID-19 click the button down below</p>
+					<button class="viewAllSymp" onClick={this.onGetSymptoms}> view symptoms </button>
 					
 					<table id='symptomTable'>
 						<tr>
@@ -311,8 +306,6 @@ class UserPage extends React.Component {
 							<td>{this.state.userSymptom.aches}</td>
 							<td>{this.state.userSymptom.pink_eye}</td>
 						</tr>
-					</table>
-					<table id='symptomTable2'>
 						<tr>
 							<th>Headache</th>
 							<th>Loss of taste</th>
@@ -332,11 +325,12 @@ class UserPage extends React.Component {
 							<td>{this.state.userSymptom.movement}</td>
 						</tr>
 					</table>
-					<button onClick={this.closeView} id='closeView'> close view </button>
-					<button onClick={this.handleOpenModal} id='editSymp'> edit symptom </button>
+				
+					<button id='closeView' onClick={this.closeView}> close view </button>
+					<button id='editSymp' onClick={this.handleOpenModal}> edit symptoms </button>
 					<button id='calPer' onClick={this.calProb}>Calculate the probability of you having CODIV-19</button>
-					<p id='seeProb'>The probability of you having COVID-19 is {this.state.prob} </p>
-
+					<p id='seeProb'>The probability of you having COVID-19 is <span> {this.state.prob}%</span> </p>
+					<p id='text2'>The Coronavirus Self-Checker/Tracker is an interactive clinical assessment tool that will assist individuals ages 13 and older, and parents and caregivers of children ages 2 to 12 on deciding when to seek testing or medical care if they suspect they or someone they know has contracted COVID-19 </p>
 
 					
 			        <ReactModal 
