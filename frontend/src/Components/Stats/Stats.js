@@ -12,6 +12,7 @@ class Stats extends React.Component {
 			loading: true,
 			summary:[],
 			date:'',
+			max:'',
 			}
 	};
 
@@ -19,7 +20,47 @@ class Stats extends React.Component {
 		const proxyurl = "https://cors-anywhere.herokuapp.com/";
 		const url = "https://api.opencovid.ca/summary";
 		const response = await fetch(proxyurl + url);
-		const data = await response.json();
+		var data = await response.json();
+		
+		//set the first one to compare the highest over all canada
+		this.setState({max: (data.summary[0].cases) + (data.summary[0].deaths)});
+		var max = this.state.max
+		
+		
+		console.log((data.summary.length));
+		Object.keys(data.summary).forEach(function(keyName) 
+		{
+			
+			//console.log((data.summary[keyName].cases) + (data.summary[keyName].deaths))
+
+			if(((data.summary[keyName].cases) + (data.summary[keyName].deaths)) >= (max))
+			{
+				max = (data.summary[keyName].cases) + (data.summary[keyName].deaths)
+			};
+		})
+		// console.log(max)
+
+		//calculate the safety rate
+		Object.keys(data.summary).forEach(function(keyName) 
+		{
+			var rate = ((((data.summary[keyName].cases) + (data.summary[keyName].deaths))/max)*100*0.90).toFixed(3);
+			data.summary[keyName].rate = rate;
+			if(rate>= 70)
+			{
+				data.summary[keyName].risk = "High-Risk";
+			}
+			else if(rate < 70 && rate >= 20)
+			{
+				data.summary[keyName].risk = "Medium-Risk";
+			}
+			else
+			{
+				data.summary[keyName].risk = "Low-Risk";
+			}
+		})
+
+		console.log(data.summary)
+
 
 		var reportDate = moment(data.summary[0].date,"DD-MM-YYYY");
 		var reportDateNewFormat = reportDate.format("YYYY, MMM DD")
@@ -54,6 +95,9 @@ class Stats extends React.Component {
 								<th>Cumulative Cases</th>
 								<th>New Deaths</th>
 								<th>Cumulative Deaths</th>
+								<th>Recovered</th>
+								<th id="rate">Rate</th>
+								<th id="risk">Risk</th>
 							</tr>
 					{this.state.summary.map((province_detial,index) => {
 									
@@ -63,6 +107,9 @@ class Stats extends React.Component {
 								<td>{province_detial.cumulative_cases}</td>
 								<td>{province_detial.deaths}</td>
 								<td>{province_detial.cumulative_deaths}</td>
+								<td>{province_detial.recovered}</td>
+								<td>{province_detial.rate}</td>
+								<td>{province_detial.risk}</td>
 							</tr>
 							
 					})}
@@ -70,6 +117,7 @@ class Stats extends React.Component {
 					</table>
 					{/* <img src="canada_map.png" alt="Italian Trulli"></img> */}
 					<img class="statMap" src={map} alt="Logo"/>
+
 				</div>
 		
 				

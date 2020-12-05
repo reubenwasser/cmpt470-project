@@ -85,7 +85,33 @@ app.post('/register', (req, res) => {
       res.status(200).json('Email is not available.');
     } else {
       // console.log(results.rows.length);
-      res.json(results.rows[0]);
+      const query2 = {
+        text: 'INSERT INTO symptom(email) VALUES ($1)',
+        values: [email]
+      }
+      pool.query(query2,(err,results2) => {
+        if (err) throw err;
+        res.json(results.rows[0]);
+      })
+      
+    }
+  });
+});
+
+app.post('/showSymptom', (req,res) => {
+  
+  const {email} = req.body;
+  const query = {
+    text: 'SELECT * FROM symptom WHERE email = $1',
+    values: [email]
+  };
+
+  pool.query(query,(err,results) => {
+    if (err) {
+      throw err;
+    }
+    else {
+      res.json({symptom: results.rows})
     }
   });
 });
@@ -125,6 +151,19 @@ app.post('/testing', (req, res) => {
       }
     });
   }
+});
+
+app.post('/editSymptom', (req,res) => {
+  const {email,fever,cough,tired,soreThroat,diarrhoea,aches,pinkEye,headache,noTaste,noSmell,rash,shortBreathing,chestPain,diffMove} = req.body;
+  const query = {
+    text: 'UPDATE symptom SET fever=$2,cough=$3,tired=$4,sorethroat=$5,diarrhoea=$6,aches=$7,pinkeye=$8,headache=$9,notaste=$10,nosmell=$11,rash=$12,shortbreathing=$13,chestpain=$14,diffmove=$15 WHERE email=$1',
+    values: [email,fever,cough,tired,soreThroat,diarrhoea,aches,pinkEye,headache,noTaste,noSmell,rash,shortBreathing,chestPain,diffMove]
+  };
+  pool.query(query,(err,res) => {
+    if (err) {
+      throw err;
+    }
+  })
 });
 
 const PORT = process.env.PORT || 8080;

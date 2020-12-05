@@ -1,3 +1,12 @@
+.leaflet-container {
+  width: 100%;
+  position: absolute;
+  top: 45px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
 .active {
   background-color: #4caf50;
 }
@@ -27,3 +36,5 @@
 .navMap {
   width: 100px;
 }
+
+

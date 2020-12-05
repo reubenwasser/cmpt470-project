@@ -83,7 +83,8 @@ class App extends Component {
             <Route exact 
               path="/UserPage" 
               render={(props) => (
-                <UserPage {...props} CorrectSignIn={this.CorrectSignIn}/>
+                <UserPage {...props} userInfo={this.state.user}
+                />
               )}
             />
           }
