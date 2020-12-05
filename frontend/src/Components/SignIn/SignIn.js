@@ -61,7 +61,7 @@ class SignIn extends Component {
 					<li class="navSign"><a class="active" href="SignIn">Sign-in</a></li>
 				</ul>
 
-				<div>
+				<div onKeyDown={this.onKeyPressedSignin}>
 			          <div class="addUserForm">
 			            <h1 class="label_title">Sign In</h1>
 			            <label>Username: </label><br/><br/>

@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const bcrypt = require('bcrypt-nodejs');
 const { Pool } = require('pg');
+const mysql = require('mysql');
 
 const pool = new Pool({
   user: process.env.DB_USER || 'postgres',
@@ -10,6 +11,20 @@ const pool = new Pool({
   database: process.env.DB_NAME || 'postgres',
   password: process.env.DB_PASSWORD || 'root',
 });
+
+// const con = mysql.createConnection({
+//   host: "104.198.147.79",
+//   user: "root",
+//   password: "Bolshevik35+",
+//   database: "cmpt470"
+// });
+
+// con.connect(function(err) {
+//   if (err) {
+//     return console.error('error: ' + err.message);
+//   }
+//   // console.log("Connected!");
+// });
 
 const app = express();
 app.use(bodyParser.json());
@@ -32,6 +47,7 @@ app.post('/signin', (req, res) => {
     values: [email],
   };
   pool.query(query, (err, results) => {
+    // console.log(results);
     if (err) {
       res.status(400).json('Unable to get user.');
     } else {
@@ -100,6 +116,43 @@ app.post('/showSymptom', (req,res) => {
   });
 });
 
+app.post('/testing', (req, res) => {
+  const {city} = req.body;
+  if (city == "") {
+    const query = {
+      text: 'SELECT name, website, street, city, province, zipcode, phone FROM sites WHERE name != \'\'',
+    };
+    pool.query(query, (err, results) => {
+      // console.log(results.rows);
+      if (err) {
+        res.status(400).json('Unable to get user.');
+      } else {
+        res.status(200).json(results.rows);
+      }
+    });
+  }
+  else{
+    const query = {
+      text: 'SELECT name, website, street, city, province, zipcode, phone FROM sites WHERE city = $1',
+      values: [city],
+    };
+    pool.query(query, (err, results) => {
+      // console.log(results.rows);
+      if (err) {
+        res.status(400).json('Unable to get user.');
+      } else {
+        // console.log("go here");
+        if (results.rows.length < 1) {
+          res.status(200).json('No result');
+        } else {
+          // console.log(result);
+          res.status(200).json(results.rows);
+        }
+      }
+    });
+  }
+});
+
 app.post('/editSymptom', (req,res) => {
   const {email,fever,cough,tired,soreThroat,diarrhoea,aches,pinkEye,headache,noTaste,noSmell,rash,shortBreathing,chestPain,diffMove} = req.body;
   const query = {
@@ -112,9 +165,6 @@ app.post('/editSymptom', (req,res) => {
     }
   })
 });
-
-
-
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {

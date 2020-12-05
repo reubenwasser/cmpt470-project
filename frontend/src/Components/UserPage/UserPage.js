@@ -165,6 +165,12 @@ class UserPage extends React.Component {
 	    });
 	}
 
+	componentDidMount() {
+  		window.onpopstate = () => {
+  			this.props.CorrectSignIn(false);
+  		}
+	}
+	
 	onGetSymptoms = () => {
 		fetch('/showSymptom', {
 			method: 'post',
@@ -272,7 +278,6 @@ class UserPage extends React.Component {
 		})
 
 	}
-
 
 	render(){
 		return(

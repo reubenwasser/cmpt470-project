@@ -4,6 +4,7 @@ import UnauthMain from './Components/UnauthMain/UnauthMain'
 import Register from './Components/Register/Register'
 import UserPage from './Components/UserPage/UserPage'
 import SignIn from './Components/SignIn/SignIn'
+import TestingSite from './Components/TestingSite/TestingSite'
 import Map from './Components/Map/Map';
 import Stats from './Components/Stats/Stats'
 
@@ -44,37 +45,41 @@ class App extends Component {
   render(){
     const {isSignIn} = this.state;
      return (
-      <BrowserRouter>
+      <BrowserRouter useEffect>
         <Switch>
-
          {isSignIn === false?
-            <>
             <div>
               <Route exact path="/" component={UnauthMain} />
               <Route exact path='/Register' 
-                render= {(props) => 
-                  (<Register {...props} UserInfo={this.UserInfo}/>)
-                }/>
+                render= {(props) => (
+                  <Register {...props} UserInfo={this.UserInfo}/>
+                )}
+              />
+              <Route exact path='/TestingSite' 
+                render= {(props) => (
+                  <TestingSite {...props} city={this.state.user.city}/>
+                )}
+              />
 
               <Route exact path="/SignIn" 
-                render= {(props) => 
-                  (<SignIn {...props} UserInfo={this.UserInfo} CorrectSignIn={this.CorrectSignIn}/>)
-              }/>
+                render= {(props) => (
+                  <SignIn {...props} UserInfo={this.UserInfo} CorrectSignIn={this.CorrectSignIn}/>
+                )}
+              />
+
               <Route exact path="/Map"
-                render={(props) => 
-                  (<Map {...props}/>)
-              }/>
+                render={(props) => (
+                  <Map {...props}/>
+                )}
+              />
               <Route exact 
                 path="/Stats" 
                 render={(props) => (
-                  <Stats {...props}
-                  />
+                  <Stats {...props}/>
                 )}
               />
             </div>
-            </>
             :
-            <>
             <Route exact 
               path="/UserPage" 
               render={(props) => (
@@ -82,7 +87,6 @@ class App extends Component {
                 />
               )}
             />
-            </>            
           }
 
         </Switch>
