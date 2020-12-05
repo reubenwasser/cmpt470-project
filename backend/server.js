@@ -12,19 +12,19 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD || 'root',
 });
 
-const con = mysql.createConnection({
-  host: "104.198.147.79",
-  user: "root",
-  password: "Bolshevik35+",
-  database: "cmpt470"
-});
+// const con = mysql.createConnection({
+//   host: "104.198.147.79",
+//   user: "root",
+//   password: "Bolshevik35+",
+//   database: "cmpt470"
+// });
 
-con.connect(function(err) {
-  if (err) {
-    return console.error('error: ' + err.message);
-  }
-  // console.log("Connected!");
-});
+// con.connect(function(err) {
+//   if (err) {
+//     return console.error('error: ' + err.message);
+//   }
+//   // console.log("Connected!");
+// });
 
 const app = express();
 app.use(bodyParser.json());
@@ -47,6 +47,7 @@ app.post('/signin', (req, res) => {
     values: [email],
   };
   pool.query(query, (err, results) => {
+    // console.log(results);
     if (err) {
       res.status(400).json('Unable to get user.');
     } else {
@@ -91,14 +92,39 @@ app.post('/register', (req, res) => {
 
 app.post('/testing', (req, res) => {
   const {city} = req.body;
-  const query = "SELECT Name, Website, Street, City, Province, PostalCode, Phone FROM Testing_Sites WHERE City = ?";
-  const value = [[city]];
-  con.query(query,[value], function (err, result) {
-      if (err){
-        return console.error('error: ' + err.message);
+  if (city == "") {
+    const query = {
+      text: 'SELECT name, website, street, city, province, zipcode, phone FROM sites WHERE name != \'\'',
+    };
+    pool.query(query, (err, results) => {
+      // console.log(results.rows);
+      if (err) {
+        res.status(400).json('Unable to get user.');
+      } else {
+        res.status(200).json(results.rows);
       }
-      res.status(200).json(result);
-  });
+    });
+  }
+  else{
+    const query = {
+      text: 'SELECT name, website, street, city, province, zipcode, phone FROM sites WHERE city = $1',
+      values: [city],
+    };
+    pool.query(query, (err, results) => {
+      // console.log(results.rows);
+      if (err) {
+        res.status(400).json('Unable to get user.');
+      } else {
+        // console.log("go here");
+        if (results.rows.length < 1) {
+          res.status(200).json('No result');
+        } else {
+          // console.log(result);
+          res.status(200).json(results.rows);
+        }
+      }
+    });
+  }
 });
 
 const PORT = process.env.PORT || 8080;
