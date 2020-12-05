@@ -279,8 +279,6 @@ class UserPage extends React.Component {
 
 	}
 
->>>>>>> origin/main
-
 	render(){
 		return(
 			<div>
