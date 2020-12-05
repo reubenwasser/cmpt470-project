@@ -37,6 +37,15 @@ class App extends Component {
         joined: data.joined,
       },
     });
+    const user = {
+      name: data.name,
+      email: data.email,
+      dob: data.dob,
+      city: data.city,
+      joined: data.joined,
+    };
+
+    sessionStorage.setItem('user', JSON.stringify(user));
   };
 
   CorrectSignIn = (bool) => {
@@ -55,9 +64,9 @@ class App extends Component {
           <Route exact path='/SignIn'
             render={(props) => ( <SignIn {...props} UserInfo={this.UserInfo} CorrectSignIn={this.CorrectSignIn} /> )}
           />
-          <PrivateRoute exact path='/UserPage' component={UserPage} isSignIn={isSignIn} userInfo={this.state.user}  />
+          <PrivateRoute exact path='/UserPage' component={UserPage} isSignIn={isSignIn} />
           <PrivateRoute exact path='/Stats' component={Stats} isSignIn={isSignIn} />
-          <PrivateRoute exact path='/TestingSite' component={TestingSite} isSignIn={isSignIn} city={this.state.user.city} />
+          <PrivateRoute exact path='/TestingSite' component={TestingSite} isSignIn={isSignIn} />
           <PrivateRoute exact path='/Map' component={Map} isSignIn={isSignIn} />
         </Switch>
       </BrowserRouter>
