@@ -3,6 +3,10 @@ import React from 'react';
 import './NavigationBar.css';
 
 class NavigationBar extends React.Component {
+  onLogOut = () => {
+    sessionStorage.clear();
+  }
+
   render() {
     const isSignIn = this.props.isSignIn;
     const active = this.props.active;
@@ -23,7 +27,7 @@ class NavigationBar extends React.Component {
               <li className={`navMap ${active === 'Map' ? 'active' : ''}`}>
                 <a href='Map'>Map</a>
               </li>
-              <li className='navLogOff'>
+              <li className='navLogOff' onClick={this.onLogOut}>
                 <a href='/'>Log Off</a>
               </li>
             </ul>

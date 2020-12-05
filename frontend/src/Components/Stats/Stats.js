@@ -80,7 +80,7 @@ class Stats extends React.Component {
 			<div>
         <NavigationBar active='Stats' isSignIn={true} />
 
-				<div class="statBody">
+				<div className="statBody">
 					<h1 className="Text">Current Stats - Canada</h1>
 					<h3 className="Text1">Update @</h3>
 					<h3 className="ReportDate">{this.state.date}</h3>
@@ -114,7 +114,7 @@ class Stats extends React.Component {
 						</tbody>
 					</table>
 					{/* <img src="canada_map.png" alt="Italian Trulli"></img> */}
-					<img class="statMap" src={map} alt="Logo"/>
+					<img className="statMap" src={map} alt="Logo"/>
 
 				</div>
 		

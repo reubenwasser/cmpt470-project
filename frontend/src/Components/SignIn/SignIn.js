@@ -58,10 +58,10 @@ class SignIn extends Component {
         <NavigationBar active='SignIn' isSignIn={false} />
 
 				<div onKeyDown={this.onKeyPressedSignin}>
-			          <div class="addUserForm">
-			            <h1 class="label_title">Sign In</h1>
+			          <div className="addUserForm">
+			            <h1 className="label_title">Sign In</h1>
 			            <label>Username: </label><br/><br/>
-			            <input class="signInput" 
+			            <input className="signInput" 
 			            	id="email" 
 			                type="email" 
 			                name="email" 
@@ -70,19 +70,19 @@ class SignIn extends Component {
 			                onChange={this.onEmailChange}/>
 			            <br/><br/>
 			            <label>Password: </label><br/><br/>
-			            <input class="signInput" id="password" type="password" name="email" size="50" required
+			            <input className="signInput" id="password" type="password" name="email" size="50" required
 			                placeholder="eg: bubbleteaislife" 
 			                onfocus="this.placeholder = ''"
 			                onChange={this.onPasswordChange}/>
 			            <br/><br/>
 			            {!isCorrect ?
-				      		<p class="signWrong">Wrong username or password.</p>
+				      		<p className="signWrong">Wrong username or password.</p>
 				      		:
 				      		<p className='ma1'></p>
 				      	}
-				      	<a class="signForgot" href="Register">Forgot your password?</a><br/>
+				      	<a className="signForgot" href="Register">Forgot your password?</a><br/>
 			            <input
-			            	class="signSubmit"
+			            	className="signSubmit"
 			            	onClick={this.onSubmitSignin}
 			            	type="submit" 
 			            	value="Sign in"/>

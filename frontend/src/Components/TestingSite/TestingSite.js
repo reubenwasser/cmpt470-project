@@ -59,7 +59,7 @@ class TestingSite extends Component {
 					</div>
 				</div>
 	            {noresult ?
-		      		<p class='signWrong'>No result found</p>
+		      		<p className='signWrong'>No result found</p>
 		      		:
 		      		<ListSite list={list}/>
 		      	}
