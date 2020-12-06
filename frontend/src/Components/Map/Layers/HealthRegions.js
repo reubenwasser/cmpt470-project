@@ -8,20 +8,20 @@ const COLOR_3 = "#fdae61";
 const COLOR_4 = "#d7191c";
 
 function getColor(d) {
-  return d > 5000
+  return d > 20
     ? COLOR_4
-    : d > 1000
+    : d > 10
     ? COLOR_3
-    : d > 500
+    : d > 5
     ? COLOR_2
-    : d > 50
+    : d > 1
     ? COLOR_1
     : COLOR_0;
 }
 
 function style(feature) {
   return {
-    fillColor: getColor(feature.properties.CurrentCaseCount),
+    fillColor: getColor(feature.properties.NewCaseRate100K7Day),
     weight: 1,
     opacity: 1,
     color: "white",
@@ -43,7 +43,8 @@ export default class HealthRegions extends React.Component {
 
   onEachFeature = (feature, layer) => {
     const popupContent = `<strong>Health Region:</strong> ${feature.properties.ENGNAME} <br> 
-                          <strong>Current Cases:</strong> ${feature.properties.CurrentCaseCount} <br>
+                          <strong>Total Cases:</strong> ${feature.properties.CurrentCaseCount} <br>
+                          <strong>Total Deaths:</strong> ${feature.properties.CurrentDeaths} <br>
                           <strong>New Cases Last 7 Days:</strong> ${feature.properties.NewCases7Day} <br>
                           <strong>New Cases Last 7 Days Per 100,000:</strong>
                            ${feature.properties.NewCaseRate100K7Day.toFixed(2)}`;

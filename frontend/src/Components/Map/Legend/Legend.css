@@ -1,24 +1,41 @@
-.legend {
-    line-height: 18px;
+body {
+    margin: 0px;
+  }
+  
+  .info {
+    padding: 6px 8px;
+    background: white;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    bottom: 1rem;
+    right: 1rem;
+    position: fixed;
+
+  }
+  
+  .info h4 {
+    margin: 0 0 5px;
+    color: #777;
+  }
+  
+  .legend {
+    text-align: left;
+    line-height: 20px;
     color: #555;
-}
-.legend i {
-    width: 18px;
-    height: 18px;
+  }
+  
+  .legend i {
+    width: 20px;
+    height: 20px;
+    font-size: large;
     float: left;
     margin-right: 8px;
     opacity: 0.7;
-}
+  }
 
-.info {
-    padding: 30px 30px;
-    font: 14px/16px Arial, Helvetica, sans-serif;
-    background: white;
-    background: rgba(255,255,255,0.8);
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    border-radius: 20px;
-}
-.info h4 {
-    margin: 0 0 5px;
-    color: #777;
-}
+  #legend {
+    font-size: large;
+    font-weight: 500;
+    font: 16px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+  }
+  

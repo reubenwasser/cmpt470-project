@@ -32,7 +32,7 @@ class Map extends React.Component {
             }}/>
               <Layers />
               {/* Legend actin wierd */}
-              {/* <Legend /> */}
+              <Legend />
           </MapContainer>
         </div>
       </div>

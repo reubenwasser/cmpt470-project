@@ -2,6 +2,8 @@
   position: fixed;
   z-index: 5000 !important;
   background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   width: 300px;
   margin-bottom: 1px;
   margin-left : 1px;
