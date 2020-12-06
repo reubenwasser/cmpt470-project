@@ -72,6 +72,9 @@ class Stats extends React.Component {
 		this.setState({summary: data.summary});
 		this.setState({date: reportDateNewFormat})
 		//console.log(this.state.date);
+		document.getElementById('table').style.visibility = "visible";
+		document.getElementById('map').style.visibility = "visible";
+		document.getElementById('note').style.visibility = "visible";
 	}
 	
 	render()
@@ -85,7 +88,7 @@ class Stats extends React.Component {
 					<h3 className="Text1">Update @</h3>
 					<h3 className="ReportDate">{this.state.date}</h3>
 					<br></br>
-					<table>
+					<table id = "table">
 						<tbody>
 							<tr>
 								<th>Province</th>
@@ -114,9 +117,11 @@ class Stats extends React.Component {
 						</tbody>
 					</table>
 					{/* <img src="canada_map.png" alt="Italian Trulli"></img> */}
-					<img className="statMap" src={map} alt="Logo"/>
+					<img className="statMap" src={map} alt="Logo" id="map"/>
 
 				</div>
+				<p id = "note">&#9733;Note: You may seen 0 case for some provinces such as BC on weekend, that's because 
+				they are not updating their COVID cases on weekend.</p>
 		
 				
 			</div>
