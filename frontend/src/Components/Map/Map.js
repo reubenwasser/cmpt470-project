@@ -1,10 +1,11 @@
-import React from "react";
-import { MapContainer } from "react-leaflet";
-import EsriLeafletGeoSearch from "react-esri-leaflet/plugins/EsriLeafletGeoSearch";
+import React from 'react';
+import { MapContainer } from 'react-leaflet';
+import EsriLeafletGeoSearch from 'react-esri-leaflet/plugins/EsriLeafletGeoSearch';
 
 import './Map.css';
 import Layers from './Layers/Layers.js'
 import Legend from './Legend/Legend'
+import NavigationBar from '../NavigationBar/NavigationBar';
 
 
 class Map extends React.Component {
@@ -19,16 +20,9 @@ class Map extends React.Component {
     const position = [this.state.lat, this.state.long];
     return (
       <div>
-        <div className="header">
-          <ul className="nav">
-            <li className="navHome"><a href="/">Home</a></li>
-            <li className="navStat"><a href="Stats">Stats</a></li>
-            <li className="navMap"><a class="active" href="Map">Map</a></li>
-            <li className="navReg"><a href="Register" on>Register</a></li>
-            <li className="navSign"><a href="SignIn">Sign-in</a></li>
-          </ul>
-        </div>
-        <div className="map">
+        <NavigationBar active='Map' isSignIn={true} />
+        
+        <div className='map'>
           <MapContainer center={position} zoom={this.state.zoom} scrollWheelZoom={true} maxZoom={20}>
             <EsriLeafletGeoSearch 
             eventHandlers={{

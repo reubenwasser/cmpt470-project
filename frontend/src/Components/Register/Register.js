@@ -1,4 +1,6 @@
 import React from 'react';
+
+import NavigationBar from '../NavigationBar/NavigationBar';
 import "./Register.css"
 
 
@@ -73,20 +75,14 @@ class Register extends React.Component {
     return(
       <div>
 
-        <ul class="nav">
-          <li class="navHome"><a href="/">Home</a></li>
-          <li class="navStat"><a href="Stats">Stats</a></li>
-          <li class="navMap"><a href="Map">Map</a></li>
-          <li class="navReg"><a class="active" href="Register" on>Register</a></li>
-          <li class="navSign"><a href="SignIn">Sign-in</a></li>
-        </ul>
+        <NavigationBar active='Register' isSignIn={false} />
         
         <div onKeyDown={this.onKeyPressedRegister}>
-          <div class="regisUserForm">
-            <h1 class="title">Register</h1>
+          <div className="regisUserForm">
+            <h1 className="title">Register</h1>
             <label>Full Name : </label><br/><br/>
             <input 
-              class="regisInput"
+              className="regisInput"
               id="fn" 
               type="text" 
               name="fullname" 
@@ -95,7 +91,7 @@ class Register extends React.Component {
             <br/>
             <label>UserName : </label><br/><br/>
             <input 
-              class="regisInput"
+              className="regisInput"
               id="email" 
               type="email" 
               name="email" 
@@ -105,19 +101,19 @@ class Register extends React.Component {
             <br/>
             <label>password: </label><br/><br/>
             <input
-              class="regisInput" 
+              className="regisInput" 
               id="password" 
               type="password" 
               name="email" 
               size="50" 
               required
               placeholder="eg: bubbleteaislife" 
-              onfocus="this.placeholder = ''"
+              onFocus="this.placeholder = ''"
               onChange={this.onPasswordChange}/>
             <br/>
             <label>Date of Birth: </label><br/><br/>
             <input
-              class="regisInputDate" 
+              className="regisInputDate" 
               id="dob" 
               type="date" 
               name="dob" 
@@ -126,7 +122,7 @@ class Register extends React.Component {
             <br/>
             <label>City: </label><br/><br/>
             <input
-              class="regisInput"
+              className="regisInput"
               id="city" 
               type="text" 
               name="city" 
@@ -149,12 +145,12 @@ class Register extends React.Component {
             </datalist>
             <br/>
             {!validateEmail ?
-              <p class="regisWrong">Email is not avaiable to use. Please use different email!</p>
+              <p className="regisWrong">Email is not avaiable to use. Please use different email!</p>
               :
               <p className='ma1'></p>
             }
             <input
-              class="regisSubmit"
+              className="regisSubmit"
               onClick={this.onSubmitRegister}
               type="submit" 
               value="Register"/>

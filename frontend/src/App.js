@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+
 import UnauthMain from './Components/UnauthMain/UnauthMain'
 import Register from './Components/Register/Register'
 import UserPage from './Components/UserPage/UserPage'
@@ -7,6 +8,7 @@ import SignIn from './Components/SignIn/SignIn'
 import TestingSite from './Components/TestingSite/TestingSite'
 import Map from './Components/Map/Map';
 import Stats from './Components/Stats/Stats'
+import PrivateRoute from './PrivateRoute';
 
 document.title = 'Covid-19 Pandemic';
 
@@ -15,7 +17,6 @@ class App extends Component {
     super();
     this.state = {
       route: 'main',
-      isSignIn: false,
       user: {
         name: '',
         email: '',
@@ -36,59 +37,37 @@ class App extends Component {
         joined: data.joined,
       },
     });
+    const user = {
+      name: data.name,
+      email: data.email,
+      dob: data.dob,
+      city: data.city,
+      joined: data.joined,
+    };
+
+    sessionStorage.setItem('user', JSON.stringify(user));
   };
 
   CorrectSignIn = (bool) => {
-    this.setState({isSignIn: bool})
+    sessionStorage.setItem('isSignIn', bool);
   }
   
   render(){
-    const {isSignIn} = this.state;
+    const isSignIn = sessionStorage.getItem('isSignIn');
      return (
       <BrowserRouter useEffect>
         <Switch>
-         {isSignIn === false?
-            <div>
-              <Route exact path="/" component={UnauthMain} />
-              <Route exact path='/Register' 
-                render= {(props) => (
-                  <Register {...props} UserInfo={this.UserInfo}/>
-                )}
-              />
-              <Route exact path='/TestingSite' 
-                render= {(props) => (
-                  <TestingSite {...props} city={this.state.user.city}/>
-                )}
-              />
-
-              <Route exact path="/SignIn" 
-                render= {(props) => (
-                  <SignIn {...props} UserInfo={this.UserInfo} CorrectSignIn={this.CorrectSignIn}/>
-                )}
-              />
-
-              <Route exact path="/Map"
-                render={(props) => (
-                  <Map {...props}/>
-                )}
-              />
-              <Route exact 
-                path="/Stats" 
-                render={(props) => (
-                  <Stats {...props}/>
-                )}
-              />
-            </div>
-            :
-            <Route exact 
-              path="/UserPage" 
-              render={(props) => (
-                <UserPage {...props} userInfo={this.state.user} CorrectSignIn={this.CorrectSignIn}
-                />
-              )}
-            />
-          }
-
+          <Route exact path='/' component={UnauthMain} isSignIn={isSignIn} />
+          <Route exact path='/Register'
+            render={(props) => ( <Register {...props} UserInfo={this.UserInfo} /> )}
+          />
+          <Route exact path='/SignIn'
+            render={(props) => ( <SignIn {...props} UserInfo={this.UserInfo} CorrectSignIn={this.CorrectSignIn} /> )}
+          />
+          <PrivateRoute exact path='/UserPage' component={UserPage} isSignIn={isSignIn} />
+          <PrivateRoute exact path='/Stats' component={Stats} isSignIn={isSignIn} />
+          <PrivateRoute exact path='/TestingSite' component={TestingSite} isSignIn={isSignIn} />
+          <PrivateRoute exact path='/Map' component={Map} isSignIn={isSignIn} />
         </Switch>
       </BrowserRouter>
     );

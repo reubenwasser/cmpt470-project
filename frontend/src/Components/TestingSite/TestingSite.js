@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import "./TestingSite.css";
-import ListSite from "./ListSite";
+
+import ListSite from './ListSite';
+import NavigationBar from '../NavigationBar/NavigationBar';
+import './TestingSite.css';
 
 class TestingSite extends Component {
 	constructor(props) {
@@ -41,11 +43,7 @@ class TestingSite extends Component {
 		const {list, noresult} = this.state;
 		return(
 			<div>
-				<ul class="nav">
-				  <li class="navUser"><a href="/UserPage">UserPage</a></li>
-				  <li class="navUser"><a class="active" href="/TestingSite">TestingSite</a></li>
-				  <li class="userLog"><a href="/">log-off</a></li>
-				</ul>
+        <NavigationBar active='TestingSite' isSignIn={true} />
 
 				<div className='center container'>
 					<div className='form pa4 br3 shadow-3'>
@@ -61,7 +59,7 @@ class TestingSite extends Component {
 					</div>
 				</div>
 	            {noresult ?
-		      		<p class="signWrong">No result found</p>
+		      		<p className='signWrong'>No result found</p>
 		      		:
 		      		<ListSite list={list}/>
 		      	}

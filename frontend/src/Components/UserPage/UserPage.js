@@ -1,14 +1,18 @@
 import React from 'react'; 
-import "./UserPage.css"
 import ReactModal from 'react-modal';
+
+import NavigationBar from '../NavigationBar/NavigationBar';
+import "./UserPage.css"
+
 
 class UserPage extends React.Component {
 	constructor(props) {
-	    super(props);
+      super(props);
+      const user = JSON.parse(sessionStorage.getItem('user'));
 	    this.state = {
 	      showModal: false,
-	      name: this.props.userInfo.name,
-	      email: this.props.userInfo.email,
+	      name: user.name,
+	      email: user.email,
 	      userSymptom: {
 	      	fever: "",
 		    cough: "",
@@ -276,10 +280,7 @@ class UserPage extends React.Component {
 	render(){
 		return(
 			<div>
-				<ul class="navUP">
-				  <li class="navUser"><a class="active" >UserPage</a></li>
-				  <li class="userLog"><a href="/">log-off</a></li>
-				</ul>
+        <NavigationBar active='UserPage' isSignIn={true} />
 				
 				<div class="page_body">
 					<h1>Hi {this.state.name}, </h1>
@@ -338,11 +339,11 @@ class UserPage extends React.Component {
 			        	contentLabel="diag form"	
 			        	className = "Modal"	
 			        >
-			        	<button class="close_form" onClick={this.handleCloseModal}>Cancel</button>
-			        	<button class="edit_symptom" onClick={this.editSymp}>Done</button>
+			        	<button className="close_form" onClick={this.handleCloseModal}>Cancel</button>
+			        	<button className="edit_symptom" onClick={this.editSymp}>Done</button>
 
 			   
-			        	<div class="input_label">
+			        	<div className="input_label">
 				          	<label for='fever'> Do you have a fever: </label>
 				          	<select name="fever" id="fever">
 				          		<option value={this.state.userSymptom.fever}>{this.state.userSymptom.fever}</option>
@@ -350,7 +351,7 @@ class UserPage extends React.Component {
 				          		<option value="yes">Yes</option>	
 				          	</select>
 						</div>
-						<div class="input_label">
+						<div className="input_label">
 				          	<label for='cough'> Do you have a dry cough: </label>
 				          	<select name="cough" id="cough">
 				          		<option value={this.state.userSymptom.cough}>{this.state.userSymptom.cough}</option>
@@ -358,7 +359,7 @@ class UserPage extends React.Component {
 				          		<option value="yes">Yes</option>
 				          	</select>
 						</div>
-						<div class="input_label">
+						<div className="input_label">
 				          	<label for='tired'> Do you feel tired all the time: </label>
 				          	<select name="tired" id="tired">
 				          		<option value={this.state.userSymptom.tired}>{this.state.userSymptom.tired}</option>
@@ -366,7 +367,7 @@ class UserPage extends React.Component {
 				          		<option value="yes">Yes</option>
 				          	</select>
 						</div>
-						<div class="input_label">
+						<div className="input_label">
 				          	<label for='sore'>Do you have sore throat: </label>
 				          	<select name="sore" id="sore">
 				          		<option value={this.state.userSymptom.sore}>{this.state.userSymptom.sore}</option>
@@ -374,7 +375,7 @@ class UserPage extends React.Component {
 				          		<option value="yes">Yes</option>				          		
 				          	</select>
 						</div>
-						<div class="input_label">
+						<div className="input_label">
 				          	<label for='diarrhoea'>Do you have diarrhoea: </label>
 				          	<select name="diarrhoea" id="diarrhoea">
 				          		<option value={this.state.userSymptom.diarrhoea}>{this.state.userSymptom.diarrhoea}</option>
@@ -390,7 +391,7 @@ class UserPage extends React.Component {
 				          		<option value="yes">Yes</option>				          		
 				          	</select>
 						</div>
-						<div class="input_label">
+						<div className="input_label">
 				          	<label for='pink_eye'>Do you have conjunctivitis (pink_eye): </label>
 				          	<select name="pink_eye" id="pink_eye">
 				          		<option value={this.state.userSymptom.pink_eye}>{this.state.userSymptom.pink_eye}</option>
@@ -398,7 +399,7 @@ class UserPage extends React.Component {
 				          		<option value="yes">Yes</option>     		
 				          	</select>
 						</div>
-						<div class="input_label">
+						<div className="input_label">
 				          	<label for='headache'>Do you have headache: </label>
 				          	<select name="headache" id="headache">
 				          		<option value={this.state.userSymptom.headache}>{this.state.userSymptom.headache}</option>
@@ -406,7 +407,7 @@ class UserPage extends React.Component {
 				          		<option value="yes">Yes</option>     		
 				          	</select>
 						</div>
-						<div class="input_label">
+						<div className="input_label">
 				          	<label for='no_taste'>Do you have loss of taste: </label>
 				          	<select name="no_taste" id="no_taste">
 				          		<option value={this.state.userSymptom.no_taste}>{this.state.userSymptom.no_taste}</option>
@@ -414,7 +415,7 @@ class UserPage extends React.Component {
 				          		<option value="yes">Yes</option>     		
 				          	</select>
 						</div>
-						<div class="input_label">
+						<div className="input_label">
 				          	<label for='no_smell'>Do you have loss of smell: </label>
 				          	<select name="no_smell" id="no_smell">
 				          		<option value={this.state.userSymptom.no_smell}>{this.state.userSymptom.no_smell}</option>
@@ -422,7 +423,7 @@ class UserPage extends React.Component {
 				          		<option value="yes">Yes</option>     		
 				          	</select>
 						</div>
-						<div class="input_label">
+						<div className="input_label">
 				          	<label for='rash'>Do you have a rash on skin: </label>
 				          	<select name="rash" id="rash">
 				          		<option value={this.state.userSymptom.rash}>{this.state.userSymptom.rash}</option>
@@ -430,7 +431,7 @@ class UserPage extends React.Component {
 				          		<option value="yes">Yes</option>     		
 				          	</select>
 						</div>
-						<div class="input_label">
+						<div className="input_label">
 				          	<label for='breathing'>Do you have a difficulty in breathing or shortness of breath: </label>
 				          	<select name="breathing" id="breathing">
 				          		<option value={this.state.userSymptom.breathing}>{this.state.userSymptom.breathing}</option>
@@ -438,7 +439,7 @@ class UserPage extends React.Component {
 				          		<option value="yes">Yes</option>     		
 				          	</select>
 						</div>
-						<div class="input_label">
+						<div className="input_label">
 				          	<label for='chest_pain'>Do you have a chest pain or pressure: </label>
 				          	<select name="chest_pain" id="chest_pain">
 				          		<option value={this.state.userSymptom.chest_pain}>{this.state.userSymptom.chest_pain}</option>
@@ -446,7 +447,7 @@ class UserPage extends React.Component {
 				          		<option value="yes">Yes</option>     		
 				          	</select>
 						</div>
-						<div class="input_label">
+						<div className="input_label">
 				          	<label for='movement'>Do you have a loss of speech or movement: </label>
 				          	<select name="movement" id="movement">
 				          		<option value={this.state.userSymptom.movement}>{this.state.userSymptom.movement}</option>
