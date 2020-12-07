@@ -54,7 +54,7 @@ export default class Attractions extends React.Component {
 
       const query = `[out:json];\n
       area[name="Canada"]->.a;\n
-      (node(area.a)[${this.state.searchKey}=${this.state.searchValue}](${west},${south},${east},${north}););\n
+      (node(area.a)[${this.state.searchKey}=${this.state.searchValue}]["name"](${west},${south},${east},${north}););\n
       out body;>;out skel qt;`;
 
       const options = {
@@ -66,7 +66,7 @@ export default class Attractions extends React.Component {
   }
 
   onEachFeature = (feature, layer) => {
-    const popupContent = `Name: ${feature.properties.name} <br>`;
+    const popupContent = `${feature.properties.name} <br>`;
     const popupOptions = {
       'maxWidtgh': '400',
       'width': '200',
