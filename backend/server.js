@@ -132,9 +132,10 @@ app.post('/testing', (req, res) => {
     });
   }
   else{
+    // console.log(city.toLowerCase());
     const query = {
       text: 'SELECT name, website, street, city, province, zipcode, phone FROM sites WHERE city = $1',
-      values: [city],
+      values: [city.toLowerCase()],
     };
     pool.query(query, (err, results) => {
       // console.log(results.rows);
