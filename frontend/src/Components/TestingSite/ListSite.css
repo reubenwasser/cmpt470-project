@@ -1,0 +1,37 @@
+.testTable{
+    display: inline-block;
+    border-collapse: collapse;
+    margin-left: 10px;
+  }
+
+
+.testTable tr:nth-child(even) {
+    background-color: #d4d0d0;
+}
+
+.testTable tr:hover {
+    border: 1px solid black;
+    background-color: #ec9090;
+    }
+
+.testTable th  {
+    background-color: #19a974;
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 10px;
+    color: white;
+    text-align: left;
+}
+
+.testTable td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 10px;
+}
+.testTable {
+    margin-left: 17vw;
+    margin-top: 30px;
+    width: 65vw;
+    visibility: hidden;
+}
+
