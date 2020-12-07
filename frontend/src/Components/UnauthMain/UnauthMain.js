@@ -39,7 +39,7 @@ class UnauthMain extends Component {
 
             <div class="test">
               <p><strong>- Testing</strong></p>
-              <p>OVID-19 can provisionally be diagnosed on the basis of symptoms and confirmed using reverse transcription 
+              <p>COVID-19 can provisionally be diagnosed on the basis of symptoms and confirmed using reverse transcription 
                 polymerase chain reaction (RT-PCR) testing of infected secretions. Along with 
                 laboratory testing, 
                 chest CT scans may be helpful to diagnose COVID-19 in individuals with a high 
