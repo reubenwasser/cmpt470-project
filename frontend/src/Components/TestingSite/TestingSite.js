@@ -35,6 +35,7 @@ class TestingSite extends Component {
 			else{
 				this.setState({noresult: false})
 				this.setState({list: data});
+				document.getElementById('testTable').style.visibility = "visible";
 			}
 		})
 	}

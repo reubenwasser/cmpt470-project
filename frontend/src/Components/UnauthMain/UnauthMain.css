@@ -1,9 +1,75 @@
+
+.covid 
+{
+  color: black;
+  font-size: 20px;
+  background-color: wheat;
+  padding: 5px 10px 5px 10px;
+  border-radius: 15px;
+
+}
+
+
+.title
+{
+  top: 0;
+  color:black;
+  font-size:30px;
+  font-weight: bold;
+  
+}
+
+.trans,
+.test,
+.prevention,
+.treatment
+{
+  margin-top: 10px;
+  color: black;
+  font-size: 20px;
+  background-color: wheat;
+  padding: 5px 10px 5px 10px;
+  border-radius: 15px;
+  
+}
+
+
 .bodyMain {
   margin-top: 65px;
   margin-left: 15px;
+  display: inline-block;
+  width: 40vw;
+  margin-bottom: 10px;
 }
 
 .map {
   display: inline-block;
   margin-left: 30px;
 }
+
+.img{
+  position: absolute;
+  display: block;
+  top: 15vh;
+  margin-left: 44vw;
+}
+
+.covidImg{
+  width: 900px;
+  height: 250px;
+}
+
+.img1{
+  position: absolute;
+  display: block;
+  top: 55vh;
+  margin-left: 44vw;
+}
+
+.preventionImg{
+  
+  width: 900px;
+  height: 900px;
+
+}
+

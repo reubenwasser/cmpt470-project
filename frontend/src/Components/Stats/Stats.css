@@ -28,7 +28,7 @@
 }
 
 .statBody th  {
-  background-color: green;
+  background-color: #19a974;
   border: 1px solid black;
   border-collapse: collapse;
   padding: 10px;
@@ -54,7 +54,8 @@
   padding: 10px;
 }
 .statBody {
-  margin-top: 30px;
+  margin-top: 70px;
+
 }
 .statMap {
   position: fixed;
@@ -62,4 +63,17 @@
   margin-left: 30px;
   width: 680px;
   height: 570px;
+}
+
+#table,
+#map{
+  visibility: hidden;
+}
+
+#note
+{
+  margin-top: 10px;
+  margin-left: 10px;
+  visibility: hidden;
+  font-size: 15px;
 }
